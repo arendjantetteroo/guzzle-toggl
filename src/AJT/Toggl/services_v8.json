@@ -1,0 +1,25 @@
+{
+    "name": "Toggl",
+    "apiVersion": "v8",
+    "description": "Toggl API v8",
+    "operations": {
+        "GetWorkspaces": {
+            "httpMethod": "GET",
+            "uri": "workspaces",
+            "summary": "Get workspaces"
+        },
+        "GetWorkspaceUsers": {
+            "httpMethod": "GET",
+            "uri": "workspaces/{workspace-id}/users",
+            "summary": "Get workspace users",
+            "parameters": {
+                "workspace-id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

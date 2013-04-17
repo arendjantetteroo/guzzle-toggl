@@ -31,14 +31,20 @@ class TogglClient extends Client
     {
         $default = array(
             'base_url' => 'https://www.toggl.com/api/{apiVersion}',
-            'debug' => false
+            'debug' => false,
+            'apiVersion' => 'v6'
         );
-        $required = array('api_key', 'base_url');
+        $required = array('api_key', 'base_url','apiVersion');
         $config = Collection::fromConfig($config, $default, $required);
 
         $client = new self($config->get('base_url'), $config);
         // Attach a service description to the client
-        $description = ServiceDescription::factory(__DIR__ . '/services_v6.json');
+        if($config->get('apiVersion') == 'v8'){
+            $description = ServiceDescription::factory(__DIR__ . '/services_v8.json');    
+        } else {
+            $description = ServiceDescription::factory(__DIR__ . '/services_v6.json');    
+        }
+        
         $client->setDescription($description);
 
 		$client->setDefaultHeaders(array(

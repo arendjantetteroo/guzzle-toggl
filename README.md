@@ -17,10 +17,12 @@ And run `composer install`
 ## Features
 
 * supports version 6 API with API Key authentication
+* supports version 8 API with API Key authentication
 
 ## Todo
 
-- [ ] Complete the service description
+- [ ] Complete the service description for v6
+- [ ] Complete the service description for v8
 - [ ] Add some examples
 - [ ] Add tests
 - [ ] Add some Response models
@@ -37,7 +39,10 @@ require dirname(__FILE__).'/../vendor/autoload.php';
 
 use AJT\Toggl\TogglClient;
 $toggl_token = ''; // Fill in your token here
-$toggl_client = TogglClient::factory(array('api_key' => $toggl_token));
+$toggl_client = TogglClient::factory(array('api_key' => $toggl_token)); // Defaults to the v6 api
+
+// If you want the v8 api, add an api version to the client
+$toggl_client = TogglClient::factory(array('api_key' => $toggl_api_key, 'apiVersion' => 'v8'));
 
 // if you want to see what is happening, add debug => true to the factory call
 $toggl_client = TogglClient::factory(array('api_key' => $toggl_token, 'debug' => true)); 
@@ -80,7 +85,8 @@ foreach($workspaces as $workspace){
 ```
 
 ## Examples
-Copy the apikey-dist.php to apikey.php (in the root directory) and add your apikey. 
+Copy the apikey-dist.php to apikey.php (in the root directory) and add your apikey.
+Change the apiversion if you want. Version 6 will be removed on September 1st 2013 by Toggl
 Afterwards you can execute the examples in the examples directory. 
 
 You can look at the services.json for details on what methods are available and what parameters are available to call them

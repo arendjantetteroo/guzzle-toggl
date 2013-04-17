@@ -1,7 +1,6 @@
 {
     "name": "Toggl",
     "apiVersion": "v6",
-    "baseUrl": "https://www.toggl.com/api/v6",
     "description": "Toggl API v6",
     "operations": {
         "GetWorkspaces": {

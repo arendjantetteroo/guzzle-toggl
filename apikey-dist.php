@@ -8,3 +8,4 @@
  * @var string
  */
 $toggl_api_key = '';
+$toggl_api_version = 'v6';

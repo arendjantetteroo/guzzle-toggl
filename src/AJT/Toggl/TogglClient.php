@@ -38,7 +38,7 @@ class TogglClient extends Client
 
         $client = new self($config->get('base_url'), $config);
         // Attach a service description to the client
-        $description = ServiceDescription::factory(__DIR__ . '/services.json');
+        $description = ServiceDescription::factory(__DIR__ . '/services_v6.json');
         $client->setDescription($description);
 
 		$client->setDefaultHeaders(array(

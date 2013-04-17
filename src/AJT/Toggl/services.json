@@ -1,0 +1,119 @@
+{
+    "name": "Toggl",
+    "apiVersion": "v6",
+    "baseUrl": "https://www.toggl.com/api/v6",
+    "description": "Toggl API v6",
+    "operations": {
+        "GetWorkspaces": {
+            "httpMethod": "GET",
+            "uri": "workspaces.json",
+            "summary": "Get workspaces"
+        },
+        "GetWorkspaceUsers": {
+            "httpMethod": "GET",
+            "uri": "workspaces/{workspace-id}/users.json",
+            "summary": "Get workspace users",
+            "parameters": {
+                "workspace-id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        },
+        "GetLatestTimeEntries": {
+            "httpMethod": "GET",
+            "uri": "time_entries.json",
+            "summary": "Get latest time entries"
+        },
+        "GetTimeEntriesInTimeRange": {
+            "httpMethod": "GET",
+            "uri": "time_entries.json?start_date={start_date}&end_date={end_date}",
+            "summary": "Get time entries started in a specific time range",
+            "parameters": {
+                "start_date": {
+                    "location": "uri",
+                    "description": "Start date in format 2010-02-05T15:42:46+02:00",
+                    "required": true
+                },
+                "end_date": {
+                    "location": "uri",
+                    "description": "End date in format 2010-02-05T15:42:46+02:00",
+                    "required": true
+                }
+            }
+        },
+        "GetTimeEntry": {
+            "httpMethod": "GET",
+            "uri": "time_entries.json/{id}.json",
+            "summary": "Get latest time entries",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Time entry ID",
+                    "required": true
+                }
+            }
+        },
+        "CreateTimeEntry": {
+            "httpMethod": "POST",
+            "uri": "time_entries.json",
+            "summary": "Create a new time entry",
+            "parameters": {
+                "time_entry": {
+                    "location": "json",
+                    "type": "object",
+                    "properties": {
+                        "duration": {
+                            "location": "json",
+                            "type": "integer"
+                        },
+                        "billable": {
+                            "location": "json",
+                            "type": "boolean"
+                        },
+                        "start": {
+                            "location": "json",
+                            "type": "string"
+                        },
+                        "stop": {
+                            "location": "json",
+                            "type": "string"
+                        },
+                        "description": {
+                            "location": "json",
+                            "type": "string"
+                        },
+                        "created_with": {
+                          "location": "json",
+                          "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "GetTasks": {
+            "httpMethod": "GET",
+            "uri": "tasks.json",
+            "summary": "Gets a list of Tasks"
+        },
+        "GetTasksDone": {
+            "httpMethod": "GET",
+            "uri": "tasks.json?active=false",
+            "summary": "Gets a list of Tasks marked as done"
+        },
+        "GetTask": {
+            "httpMethod": "GET",
+            "uri": "tasks/{task-id}",
+            "summary": "Showing a specific task",
+            "parameters": {
+                "task-id": {
+                    "location": "uri",
+                    "description": "Task ID",
+                    "required": true
+                }
+            }
+        }
+    }
+}

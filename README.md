@@ -28,7 +28,7 @@ And run `composer install`
 ## Usage
     
 To use the Toggl API Client simply instantiate the client with the api key.
-More information on the key available at 
+More information on the key available at https://www.toggl.com/public/api#api_token
 
 ```php
 <?php

@@ -3,11 +3,14 @@
     "apiVersion": "v8",
     "description": "Toggl API v8",
     "operations": {
-        "GetClients": {
-            "httpMethod": "GET",
-            "uri": "/clients",
-            "summary": "Get clients"
-        },
+        /*
+         name: The name of the client (string, required, unique in workspace)
+         wid: workspace ID, where the client will be used (integer, required)
+         notes: Notes for the client (string, not required)
+         hrate: The hourly rate for this client (float, not required, available only for pro workspaces)
+         cur: The name of the client's currency (string, not required, available only for pro workspaces)
+         at: timestamp that is sent in the response, indicates the time client was last updated
+         */
         "CreateClient": {
             "httpMethod": "POST",
             "uri": "/clients",
@@ -21,29 +24,42 @@
                         "name": {
                             "type": "string",
                             "required": true,
-                            "description": "Client Name"
+                            "description": " The name of the client (string, required, unique in workspace)"
                         },
                         "wid": {
                             "type": "integer",
                             "required": true,
-                            "description": "Workspace ID"
+                            "description": "workspace ID, where the client will be used (integer, required)"
                         },
                         "notes": {
                             "type": "string",
                             "required": false,
-                            "description": "Notes for the client"
+                            "description": "Notes for the client (string, not required)"
                         },
                         "hrate": {
                             "type": "numerical",
                             "required": false,
-                            "description": "Clients hourly rate"
+                            "description": "The hourly rate for this client (float, not required, available only for pro workspaces)"
                         },
                         "cur": {
                             "type": "string",
                             "required": false,
-                            "description": "Clients currency"
+                            "description": "The name of the client's currency (string, not required, available only for pro workspaces)"
                         }
                     }
+                }
+            }
+        },
+        "GetClient": {
+            "httpMethod": "GET",
+            "uri": "/clients/{id}",
+            "summary": "Get Client Details",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "type": "integer",
+                    "required": true,
+                    "description": "Client ID"
                 }
             }
         },
@@ -66,27 +82,27 @@
                         "name": {
                             "type": "string",
                             "required": true,
-                            "description": "Client Name"
+                            "description": "The name of the client (string, required, unique in workspace)"
                         },
                         "wid": {
                             "type": "integer",
                             "required": true,
-                            "description": "Workspace ID (cannot be changed)"
+                            "description": "workspace ID, where the client will be used (integer, required)"
                         },
                         "notes": {
                             "type": "string",
                             "required": false,
-                            "description": "Notes for the client"
+                            "description": "Notes for the client (string, not required)"
                         },
                         "hrate": {
                             "type": "numerical",
                             "required": false,
-                            "description": "Clients hourly rate"
+                            "description": "The hourly rate for this client (float, not required, available only for pro workspaces)"
                         },
                         "cur": {
                             "type": "string",
                             "required": false,
-                            "description": "Clients currency"
+                            "description": "The name of the client's currency (string, not required, available only for pro workspaces)"
                         }
                     }
                 }
@@ -104,6 +120,11 @@
                     "description": "Client ID"
                 }
             }
+        },
+        "GetClients": {
+            "httpMethod": "GET",
+            "uri": "/clients",
+            "summary": "Get clients visible to user"
         },
         "GetClientProjects": {
             "httpMethod": "GET",
@@ -124,77 +145,7 @@
                 }
             }
         },
-        "GetWorkspaces": {
-            "httpMethod": "GET",
-            "uri": "/workspaces",
-            "summary": "Get workspaces"
-        },
-        "GetWorkspaceUsers": {
-            "httpMethod": "GET",
-            "uri": "/workspaces/{id}/users",
-            "summary": "Get workspace users",
-            "parameters": {
-                "id": {
-                    "location": "uri",
-                    "description": "Workspace ID",
-                    "required": true,
-                    "type": "integer"
-                }
-            }
-        },
-        "GetWorkspaceClients": {
-            "httpMethod": "GET",
-            "uri": "workspaces/{id}/clients",
-            "summary": "Get workspace clients",
-            "parameters": {
-                "id": {
-                    "location": "uri",
-                    "description": "Workspace ID",
-                    "required": true,
-                    "type": "integer"
-                }
-            }
-        },
-        "GetWorkspaceProjects": {
-            "httpMethod": "GET",
-            "uri": "workspaces/{id}/projects",
-            "summary": "Get workspace projects",
-            "parameters": {
-                "id": {
-                    "location": "uri",
-                    "description": "Workspace ID",
-                    "required": true,
-                    "type": "integer"
-                },
-                "active": {
-                    "location": "query",
-                    "description": "Active (true, false, both)",
-                    "type": "string",
-                    "default": "true"
-                }
-            }
-        },
-        "GetWorkspaceTasks": {
-            "httpMethod": "GET",
-            "uri": "workspaces/{id}/tasks",
-            "summary": "Get workspace tasks",
-            "parameters": {
-                "id": {
-                    "location": "uri",
-                    "description": "Workspace ID",
-                    "required": true,
-                    "type": "integer"
-                },
-                "active": {
-                    "location": "query",
-                    "description": "Active (true, false, both)",
-                    "type": "string",
-                    "default": "true"
-                }
-            }
-        },
         /*
-
          name: The name of the project (string, required, unique for client and workspace)
          wid: workspace ID, where the project will be saved (integer, required)
          cid: client ID(integer, not required)
@@ -204,7 +155,6 @@
          template_id: id of the template project used on current project's creation
          billable: whether the project is billable or not (boolean, default true, available only for pro workspaces)
          at: timestamp that is sent in the response for PUT, indicates the time task was last updated
-
          */
         "CreateProject": {
             "httpMethod": "POST",
@@ -261,6 +211,19 @@
                             "description": "whether the project is billable or not (boolean, default true, available only for pro workspaces)"
                         }
                     }
+                }
+            }
+        },
+        "GetProject": {
+            "httpMethod": "GET",
+            "uri": "/projects/{id}",
+            "summary": "Get Project details",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "type": "integer",
+                    "required": true,
+                    "description": "Project ID"
                 }
             }
         },
@@ -715,6 +678,19 @@
                 }
             }
         },
+        "GetTask": {
+            "httpMethod": "GET",
+            "uri": "/tasks/{id}",
+            "summary": "Get Task",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "type": "integer",
+                    "required": true,
+                    "description": "Task ID"
+                }
+            }
+        },
         "UpdateTask": {
             "httpMethod": "PUT",
             "uri": "/tasks/{id}",
@@ -845,7 +821,7 @@
                     "description": "Comma-separated list of Task IDs"
                 }
             }
-        }
+        },
         /*
          description: (string, required)
          wid: workspace ID (integer, required if pid or tid not supplied)
@@ -860,5 +836,338 @@
          duronly: should Toggl show the start and stop time of this time entry? (boolean, not required)
          at: timestamp that is sent in the response, indicates the time item was last updated
          */
+        "StartTimeEntry": {
+            "httpMethod": "POST",
+            "uri": "/time_entries/start",
+            "summary": "Start Time Entry",
+            "parameters": {
+                "timeEntry": {
+                    "location": "json",
+                    "type": "object",
+                    "description": "Time Entry Object",
+                    "properties": {
+                        "description": {
+                            "type": "string",
+                            "required": true,
+                            "description": "(string, required)"
+                        },
+                        "wid": {
+                            "type": "integer",
+                            "required": false,
+                            "description": "workspace ID (integer, required if pid or tid not supplied)"
+                        },
+                        "pid": {
+                            "type": "integer",
+                            "required": true,
+                            "description": "pid: project ID (integer, not required)"
+                        },
+                        "tid": {
+                            "type": "integer",
+                            "required": false,
+                            "description": "tid: task ID (integer, not required)"
+                        },
+                        "billable": {
+                            "type": "boolean",
+                            "required": false,
+                            "default": false,
+                            "description": "(boolean, not required, default false, available for pro workspaces)"
+                        },
+                        "created_with": {
+                            "type": "string",
+                            "required": true,
+                            "description": "the name of your client app (string, required)"
+                        },
+                        "tags": {
+                            "type": "array",
+                            "required": false,
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "a list of tag names (array of strings, not required)"
+                        },
+                        "duronly": {
+                            "type": "boolean",
+                            "required": false,
+                            "description": "should Toggl show the start and stop time of this time entry? (boolean, not required)"
+                        }
+                    }
+                }
+            }
+        },
+        "StopTimeEntry": {
+            "httpMethod": "PUT",
+            "uri": "/time_entries/{id}/stop",
+            "summary": "Stop Time Entry",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "type": "integer",
+                    "required": true,
+                    "description": "Time Entry ID"
+                }
+            }
+        },
+        "GetTimeEntry": {
+            "httpMethod": "GET",
+            "uri": "/time_entries/{id}",
+            "summary": "Get Time Entry",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "type": "integer",
+                    "required": true,
+                    "description": "Time Entry ID"
+                }
+            }
+        },
+        "UpdateTimeEntry": {
+            "httpMethod": "PUT",
+            "uri": "/time_entries/{id}",
+            "summary": "Update Time Entry",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "type": "integer",
+                    "required": true,
+                    "description": "Time Entry ID"
+                },
+                "parameters": {
+                    "timeEntry": {
+                        "location": "json",
+                        "type": "object",
+                        "description": "Time Entry Object",
+                        "properties": {
+                            "description": {
+                                "type": "string",
+                                "required": true,
+                                "description": "(string, required)"
+                            },
+                            "wid": {
+                                "type": "integer",
+                                "required": false,
+                                "description": "workspace ID (integer, required if pid or tid not supplied)"
+                            },
+                            "pid": {
+                                "type": "integer",
+                                "required": true,
+                                "description": "pid: project ID (integer, not required)"
+                            },
+                            "tid": {
+                                "type": "integer",
+                                "required": false,
+                                "description": "tid: task ID (integer, not required)"
+                            },
+                            "billable": {
+                                "type": "boolean",
+                                "required": false,
+                                "default": false,
+                                "description": "(boolean, not required, default false, available for pro workspaces)"
+                            },
+                            "created_with": {
+                                "type": "string",
+                                "required": true,
+                                "description": "the name of your client app (string, required)"
+                            },
+                            "tags": {
+                                "type": "array",
+                                "required": false,
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "a list of tag names (array of strings, not required)"
+                            },
+                            "duronly": {
+                                "type": "boolean",
+                                "required": false,
+                                "description": "should Toggl show the start and stop time of this time entry? (boolean, not required)"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "DeleteTimeEntry": {
+            "httpMethod": "DELETE",
+            "uri": "/time_entries/{id}",
+            "summary": "Delete Time Entry",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "type": "integer",
+                    "required": true,
+                    "description": "Time Entry ID"
+                }
+            }
+        },
+        "GetTimeEntries": {
+            "httpMethod": "GET",
+            "uri": "/time_entries",
+            "summary": "Get time entries started in a specific time range.If start_date and end_date are not specified, time entries started during the last 9 days are returned.",
+            "parameters": {
+                "start_date": {
+                    "location": "query",
+                    "description": "Start date (must be ISO 8601 date and time string)",
+                    "type": "string",
+                    "default": "true"
+                },
+                "end_date": {
+                    "location": "query",
+                    "description": "End date (must be ISO 8601 date and time string)",
+                    "type": "string",
+                    "default": "true"
+                }
+            }
+        },
+        "GetCurrentUser": {
+            "httpMethod": "GET",
+            "uri": "/me",
+            "summary": "Get Get current user data"
+        },
+        /*
+         email: a valid email for the user whose account is created (string, required)
+         password: password at least 6 characters long (string, required)
+         */
+        "CreateUser": {
+            "httpMethod": "POST",
+            "uri": "/signups",
+            "summary": "Sign up new user",
+            "parameters": {
+                "task": {
+                    "location": "json",
+                    "type": "object",
+                    "description": "User Object",
+                    "properties": {
+                        "email": {
+                            "type": "string",
+                            "required": true,
+                            "description": "a valid email for the user whose account is created (string, required)"
+                        },
+                        "password": {
+                            "type": "string",
+                            "required": true,
+                            "description": "password at least 6 characters long (string, required)"
+                        }
+                    }
+                }
+            }
+        },
+        /*
+         name: (string, required)
+         premium: If it's a pro workspace or not. Shows if someone is paying for the workspace or not (boolean, not required)
+         at: timestamp that is sent in the response, indicates the time item was last updated
+         */
+        "GetWorkspaces": {
+            "httpMethod": "GET",
+            "uri": "/workspaces",
+            "summary": "Get workspaces"
+        },
+        "GetWorkspaceUsers": {
+            "httpMethod": "GET",
+            "uri": "/workspaces/{id}/users",
+            "summary": "Get workspace users",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        },
+        "GetWorkspaceClients": {
+            "httpMethod": "GET",
+            "uri": "workspaces/{id}/clients",
+            "summary": "Get workspace clients",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        },
+        "GetWorkspaceProjects": {
+            "httpMethod": "GET",
+            "uri": "workspaces/{id}/projects",
+            "summary": "Get workspace projects",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
+                },
+                "active": {
+                    "location": "query",
+                    "description": "possible values true/false/both. By default true. If false, only archived projects are returned.",
+                    "type": "string",
+                    "default": "true"
+                }
+            }
+        },
+        "GetWorkspaceTasks": {
+            "httpMethod": "GET",
+            "uri": "workspaces/{id}/tasks",
+            "summary": "Get workspace tasks",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
+                },
+                "active": {
+                    "location": "query",
+                    "description": "possible values true/false/both. By default true. If false, only done tasks are returned.",
+                    "type": "string",
+                    "default": "true"
+                }
+            }
+        },
+        /*
+         id: workspace user id (integer)
+         uid: user id of the workspace user (integer)
+         admin: if user is workspace admin (boolean)
+         active: if the workspace user has accepted the invitation to this workspace (boolean)
+         */
+        "UpdateWorkspaceUser": {
+            "httpMethod": "PUT",
+            "uri": "/workspace_users/{id}",
+            "summary": "Update Task",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "type": "integer",
+                    "required": true,
+                    "description": "Workspace User ID"
+                },
+                "task": {
+                    "location": "json",
+                    "type": "object",
+                    "description": "Workspace User Object",
+                    "properties": {
+                        "admin": {
+                            "type": "boolean",
+                            "required": true,
+                            "description": "if user is workspace admin (boolean)"
+                        }
+                    }
+                }
+            }
+        },
+        "DeleteWorkspaceUser": {
+            "httpMethod": "DELETE",
+            "uri": "/workspace_users/{id}",
+            "summary": "Delete Workspace User",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "type": "integer",
+                    "required": true,
+                    "description": "Workspace User ID"
+                }
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@
     "operations": {
         "CreateClient": {
             "httpMethod": "POST",
-            "uri": "/clients",
+            "uri": "clients",
             "summary": "Create Client",
             "parameters": {
                 "client": {
@@ -44,7 +44,7 @@
         },
         "GetClient": {
             "httpMethod": "GET",
-            "uri": "/clients/{id}",
+            "uri": "clients/{id}",
             "summary": "Get Client Details",
             "parameters": {
                 "id": {
@@ -57,7 +57,7 @@
         },
         "UpdateClient": {
             "httpMethod": "PUT",
-            "uri": "/clients/{id}",
+            "uri": "clients/{id}",
             "summary": "Update Client",
             "parameters": {
                 "id": {
@@ -102,7 +102,7 @@
         },
         "DeleteClient": {
             "httpMethod": "DELETE",
-            "uri": "/clients/{id}",
+            "uri": "clients/{id}",
             "summary": "Delete Client",
             "parameters": {
                 "id": {
@@ -115,12 +115,12 @@
         },
         "GetClients": {
             "httpMethod": "GET",
-            "uri": "/clients",
+            "uri": "clients",
             "summary": "Get clients visible to user"
         },
         "GetClientProjects": {
             "httpMethod": "GET",
-            "uri": "/clients/{id}/projects",
+            "uri": "clients/{id}/projects",
             "summary": "Get client projects",
             "parameters": {
                 "id": {
@@ -139,7 +139,7 @@
         },
         "CreateProject": {
             "httpMethod": "POST",
-            "uri": "/projects",
+            "uri": "projects",
             "summary": "Create Project",
             "parameters": {
                 "project": {
@@ -197,7 +197,7 @@
         },
         "GetProject": {
             "httpMethod": "GET",
-            "uri": "/projects/{id}",
+            "uri": "projects/{id}",
             "summary": "Get Project details",
             "parameters": {
                 "id": {
@@ -210,7 +210,7 @@
         },
         "UpdateProject": {
             "httpMethod": "PUT",
-            "uri": "/projects/{id}",
+            "uri": "projects/{id}",
             "summary": "Update Project",
             "parameters": {
                 "id": {
@@ -274,7 +274,7 @@
         },
         "DeleteProject": {
             "httpMethod": "DELETE",
-            "uri": "/projects/{id}",
+            "uri": "projects/{id}",
             "summary": "Delete Project",
             "parameters": {
                 "id": {
@@ -287,7 +287,7 @@
         },
         "GetProjectUsers": {
             "httpMethod": "GET",
-            "uri": "/projects/{id}/project_users",
+            "uri": "projects/{id}/project_users",
             "summary": "Get project users",
             "parameters": {
                 "id": {
@@ -300,7 +300,7 @@
         },
         "CreateProjectUser": {
             "httpMethod": "POST",
-            "uri": "/project_users",
+            "uri": "project_users",
             "summary": "Create Project User",
             "parameters": {
                 "project_user": {
@@ -346,7 +346,7 @@
         },
         "UpdateProjectUser": {
             "httpMethod": "PUT",
-            "uri": "/project_users/{id}",
+            "uri": "project_users/{id}",
             "summary": "Update Project User",
             "parameters": {
                 "id": {
@@ -398,7 +398,7 @@
         },
         "DeleteProjectUser": {
             "httpMethod": "DELETE",
-            "uri": "/project_users/{id}",
+            "uri": "project_users/{id}",
             "summary": "Delete Project User",
             "parameters": {
                 "id": {
@@ -411,7 +411,7 @@
         },
         "CreateProjectUsers": {
             "httpMethod": "POST",
-            "uri": "/project_users",
+            "uri": "project_users",
             "summary": "Create multiple Project Users",
             "parameters": {
                 "project_user": {
@@ -460,7 +460,7 @@
         },
         "UpdateProjectUsers": {
             "httpMethod": "PUT",
-            "uri": "/project_users/{ids}",
+            "uri": "project_users/{ids}",
             "summary": "Update multiple Project User",
             "parameters": {
                 "ids": {
@@ -515,7 +515,7 @@
         },
         "DeleteProjectUsers": {
             "httpMethod": "DELETE",
-            "uri": "/project_users/{ids}",
+            "uri": "project_users/{ids}",
             "summary": "Delete multiple Project Users",
             "parameters": {
                 "ids": {
@@ -528,7 +528,7 @@
         },
         "CreateTag": {
             "httpMethod": "POST",
-            "uri": "/tags",
+            "uri": "tags",
             "summary": "Create Tag",
             "parameters": {
                 "tag": {
@@ -552,7 +552,7 @@
         },
         "UpdateTag": {
             "httpMethod": "PUT",
-            "uri": "/tags/{id}",
+            "uri": "tags/{id}",
             "summary": "Update Tag",
             "parameters": {
                 "id": {
@@ -582,7 +582,7 @@
         },
         "DeleteTag": {
             "httpMethod": "DELETE",
-            "uri": "/tags/{id}",
+            "uri": "tags/{id}",
             "summary": "Delete Tag",
             "parameters": {
                 "id": {
@@ -595,7 +595,7 @@
         },
         "CreateTask": {
             "httpMethod": "POST",
-            "uri": "/tasks",
+            "uri": "tasks",
             "summary": "Create Task",
             "parameters": {
                 "task": {
@@ -640,7 +640,7 @@
         },
         "GetTask": {
             "httpMethod": "GET",
-            "uri": "/tasks/{id}",
+            "uri": "tasks/{id}",
             "summary": "Get Task",
             "parameters": {
                 "id": {
@@ -653,7 +653,7 @@
         },
         "UpdateTask": {
             "httpMethod": "PUT",
-            "uri": "/tasks/{id}",
+            "uri": "tasks/{id}",
             "summary": "Update Task",
             "parameters": {
                 "id": {
@@ -704,7 +704,7 @@
         },
         "DeleteTask": {
             "httpMethod": "DELETE",
-            "uri": "/tasks/{id}",
+            "uri": "tasks/{id}",
             "summary": "Delete Task",
             "parameters": {
                 "id": {
@@ -717,7 +717,7 @@
         },
         "UpdateTasks": {
             "httpMethod": "PUT",
-            "uri": "/tasks/{ids}",
+            "uri": "tasks/{ids}",
             "summary": "Update Tasks",
             "parameters": {
                 "ids": {
@@ -771,7 +771,7 @@
         },
         "DeleteTasks": {
             "httpMethod": "DELETE",
-            "uri": "/tasks/{ids}",
+            "uri": "tasks/{ids}",
             "summary": "Delete Tasks",
             "parameters": {
                 "ids": {
@@ -784,7 +784,7 @@
         },
         "StartTimeEntry": {
             "httpMethod": "POST",
-            "uri": "/time_entries/start",
+            "uri": "time_entries/start",
             "summary": "Start Time Entry",
             "parameters": {
                 "timeEntry": {
@@ -842,7 +842,7 @@
         },
         "StopTimeEntry": {
             "httpMethod": "PUT",
-            "uri": "/time_entries/{id}/stop",
+            "uri": "time_entries/{id}/stop",
             "summary": "Stop Time Entry",
             "parameters": {
                 "id": {
@@ -855,7 +855,7 @@
         },
         "GetTimeEntry": {
             "httpMethod": "GET",
-            "uri": "/time_entries/{id}",
+            "uri": "time_entries/{id}",
             "summary": "Get Time Entry",
             "parameters": {
                 "id": {
@@ -868,7 +868,7 @@
         },
         "UpdateTimeEntry": {
             "httpMethod": "PUT",
-            "uri": "/time_entries/{id}",
+            "uri": "time_entries/{id}",
             "summary": "Update Time Entry",
             "parameters": {
                 "id": {
@@ -934,7 +934,7 @@
         },
         "DeleteTimeEntry": {
             "httpMethod": "DELETE",
-            "uri": "/time_entries/{id}",
+            "uri": "time_entries/{id}",
             "summary": "Delete Time Entry",
             "parameters": {
                 "id": {
@@ -947,7 +947,7 @@
         },
         "GetTimeEntries": {
             "httpMethod": "GET",
-            "uri": "/time_entries",
+            "uri": "time_entries",
             "summary": "Get time entries started in a specific time range.If start_date and end_date are not specified, time entries started during the last 9 days are returned.",
             "parameters": {
                 "start_date": {
@@ -966,12 +966,12 @@
         },
         "GetCurrentUser": {
             "httpMethod": "GET",
-            "uri": "/me",
+            "uri": "me",
             "summary": "Get Get current user data"
         },
         "CreateUser": {
             "httpMethod": "POST",
-            "uri": "/signups",
+            "uri": "signups",
             "summary": "Sign up new user",
             "parameters": {
                 "task": {
@@ -995,12 +995,12 @@
         },
         "GetWorkspaces": {
             "httpMethod": "GET",
-            "uri": "/workspaces",
+            "uri": "workspaces",
             "summary": "Get workspaces"
         },
         "GetWorkspaceUsers": {
             "httpMethod": "GET",
-            "uri": "/workspaces/{id}/users",
+            "uri": "workspaces/{id}/users",
             "summary": "Get workspace users",
             "parameters": {
                 "id": {
@@ -1064,7 +1064,7 @@
         },
         "UpdateWorkspaceUser": {
             "httpMethod": "PUT",
-            "uri": "/workspace_users/{id}",
+            "uri": "workspace_users/{id}",
             "summary": "Update Task",
             "parameters": {
                 "id": {
@@ -1089,7 +1089,7 @@
         },
         "DeleteWorkspaceUser": {
             "httpMethod": "DELETE",
-            "uri": "/workspace_users/{id}",
+            "uri": "workspace_users/{id}",
             "summary": "Delete Workspace User",
             "parameters": {
                 "id": {

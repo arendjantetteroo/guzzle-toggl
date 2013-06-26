@@ -3,14 +3,6 @@
     "apiVersion": "v8",
     "description": "Toggl API v8",
     "operations": {
-        /*
-         name: The name of the client (string, required, unique in workspace)
-         wid: workspace ID, where the client will be used (integer, required)
-         notes: Notes for the client (string, not required)
-         hrate: The hourly rate for this client (float, not required, available only for pro workspaces)
-         cur: The name of the client's currency (string, not required, available only for pro workspaces)
-         at: timestamp that is sent in the response, indicates the time client was last updated
-         */
         "CreateClient": {
             "httpMethod": "POST",
             "uri": "/clients",
@@ -145,17 +137,6 @@
                 }
             }
         },
-        /*
-         name: The name of the project (string, required, unique for client and workspace)
-         wid: workspace ID, where the project will be saved (integer, required)
-         cid: client ID(integer, not required)
-         active: whether the project is archived or not (boolean, by default true)
-         is_private: whether project is accessible for only project users or for all workspace users (boolean, default true)
-         template: whether the project can be used as a template (boolean, not required)
-         template_id: id of the template project used on current project's creation
-         billable: whether the project is billable or not (boolean, default true, available only for pro workspaces)
-         at: timestamp that is sent in the response for PUT, indicates the time task was last updated
-         */
         "CreateProject": {
             "httpMethod": "POST",
             "uri": "/projects",
@@ -317,14 +298,6 @@
                 }
             }
         },
-        /*
-         pid: project ID (integer, required)
-         uid: user ID, who is added to the project (integer, required)
-         wid: workspace ID, where the project belongs to (integer, not-required, project's workspace id is used)
-         manager: admin rights for this project (boolean, default false)
-         rate: hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency.
-         at: timestamp that is sent in the response, indicates when the project user was last updated
-         */
         "CreateProjectUser": {
             "httpMethod": "POST",
             "uri": "/project_users",
@@ -553,10 +526,6 @@
                 }
             }
         },
-        /*
-         name: The name of the tag (string, required, unique in workspace)
-         wid: workspace ID, where the tag will be used (integer, required)
-         */
         "CreateTag": {
             "httpMethod": "POST",
             "uri": "/tags",
@@ -624,15 +593,6 @@
                 }
             }
         },
-        /*
-         name: The name of the task (string, required, unique in project)
-         pid: project ID for the task (integer, required)
-         wid: workspace ID, where the task will be saved (integer, project's workspace id is used when not supplied)
-         uid: user ID, to whom the task is assigned to (integer, not required)
-         estimated_seconds: estimated duration of task in seconds (integer, not required)
-         active: whether the task is done or not (boolean, by default true)
-         at: timestamp that is sent in the response for PUT, indicates the time task was last updated
-         */
         "CreateTask": {
             "httpMethod": "POST",
             "uri": "/tasks",
@@ -822,20 +782,6 @@
                 }
             }
         },
-        /*
-         description: (string, required)
-         wid: workspace ID (integer, required if pid or tid not supplied)
-         pid: project ID (integer, not required)
-         tid: task ID (integer, not required)
-         billable: (boolean, not required, default false, available for pro workspaces)
-         start: time entry start time (string, required, ISO 8601 date and time)
-         stop: time entry stop time (string, not required, ISO 8601 date and time)
-         duration: time entry duration in seconds. If the time entry is currently running, the duration attribute contains a negative value, denoting the start of the time entry in seconds since epoch (Jan 1 1970). The correct duration can be calculated as current_time + duration, where current_time is the current time in seconds since epoch. (integer, required)
-         created_with: the name of your client app (string, required)
-         tags: a list of tag names (array of strings, not required)
-         duronly: should Toggl show the start and stop time of this time entry? (boolean, not required)
-         at: timestamp that is sent in the response, indicates the time item was last updated
-         */
         "StartTimeEntry": {
             "httpMethod": "POST",
             "uri": "/time_entries/start",
@@ -1023,10 +969,6 @@
             "uri": "/me",
             "summary": "Get Get current user data"
         },
-        /*
-         email: a valid email for the user whose account is created (string, required)
-         password: password at least 6 characters long (string, required)
-         */
         "CreateUser": {
             "httpMethod": "POST",
             "uri": "/signups",
@@ -1051,11 +993,6 @@
                 }
             }
         },
-        /*
-         name: (string, required)
-         premium: If it's a pro workspace or not. Shows if someone is paying for the workspace or not (boolean, not required)
-         at: timestamp that is sent in the response, indicates the time item was last updated
-         */
         "GetWorkspaces": {
             "httpMethod": "GET",
             "uri": "/workspaces",
@@ -1125,12 +1062,6 @@
                 }
             }
         },
-        /*
-         id: workspace user id (integer)
-         uid: user id of the workspace user (integer)
-         admin: if user is workspace admin (boolean)
-         active: if the workspace user has accepted the invitation to this workspace (boolean)
-         */
         "UpdateWorkspaceUser": {
             "httpMethod": "PUT",
             "uri": "/workspace_users/{id}",

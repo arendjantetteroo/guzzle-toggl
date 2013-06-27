@@ -972,7 +972,7 @@
             "uri": "signups",
             "summary": "Sign up new user",
             "parameters": {
-                "task": {
+                "user": {
                     "location": "json",
                     "type": "object",
                     "description": "User Object",
@@ -1071,7 +1071,7 @@
                     "required": true,
                     "description": "Workspace User ID"
                 },
-                "task": {
+                "workspace_user": {
                     "location": "json",
                     "type": "object",
                     "description": "Workspace User Object",

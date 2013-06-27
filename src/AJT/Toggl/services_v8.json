@@ -8,7 +8,7 @@
             "uri": "clients",
             "summary": "Create Client",
             "parameters": {
-                "client": {
+                "data": {
                     "location": "json",
                     "type": "object",
                     "description": "Client Object",
@@ -66,7 +66,7 @@
                     "required": true,
                     "description": "Client ID"
                 },
-                "client": {
+                "data": {
                     "location": "json",
                     "type": "object",
                     "description": "Client Object",
@@ -142,7 +142,7 @@
             "uri": "projects",
             "summary": "Create Project",
             "parameters": {
-                "project": {
+                "data": {
                     "location": "json",
                     "type": "object",
                     "description": "Project Object",
@@ -219,7 +219,7 @@
                     "required": true,
                     "description": "Project ID"
                 },
-                "project": {
+                "data": {
                     "location": "json",
                     "type": "object",
                     "description": "Project Object",
@@ -303,7 +303,7 @@
             "uri": "project_users",
             "summary": "Create Project User",
             "parameters": {
-                "project_user": {
+                "data": {
                     "location": "json",
                     "type": "object",
                     "description": "Project User Object",
@@ -332,7 +332,6 @@
                         "rate": {
                             "type": "numerical",
                             "required": false,
-                            "default": true,
                             "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                         },
                         "fullname": {
@@ -355,7 +354,7 @@
                     "required": true,
                     "description": "Project ID"
                 },
-                "project_user": {
+                "data": {
                     "location": "json",
                     "type": "object",
                     "description": "Project User Object",
@@ -384,7 +383,6 @@
                         "rate": {
                             "type": "numerical",
                             "required": false,
-                            "default": true,
                             "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                         },
                         "fullname": {
@@ -414,7 +412,7 @@
             "uri": "project_users",
             "summary": "Create multiple Project Users",
             "parameters": {
-                "project_user": {
+                "data": {
                     "location": "json",
                     "type": "array",
                     "items": {
@@ -445,7 +443,6 @@
                             "rate": {
                                 "type": "numerical",
                                 "required": false,
-                                "default": true,
                                 "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                             },
                             "fullname": {
@@ -469,7 +466,7 @@
                     "required": true,
                     "description": "Comma separated list of Project User IDs"
                 },
-                "project_user": {
+                "data": {
                     "location": "json",
                     "type": "array",
                     "items": {
@@ -500,7 +497,6 @@
                             "rate": {
                                 "type": "numerical",
                                 "required": false,
-                                "default": true,
                                 "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                             },
                             "fullname": {
@@ -531,7 +527,7 @@
             "uri": "tags",
             "summary": "Create Tag",
             "parameters": {
-                "tag": {
+                "data": {
                     "location": "json",
                     "type": "object",
                     "description": "Tag Object",
@@ -561,7 +557,7 @@
                     "required": true,
                     "description": "Tag ID"
                 },
-                "tag": {
+                "data": {
                     "location": "json",
                     "type": "object",
                     "description": "Tag Object",
@@ -598,7 +594,7 @@
             "uri": "tasks",
             "summary": "Create Task",
             "parameters": {
-                "task": {
+                "data": {
                     "location": "json",
                     "type": "object",
                     "description": "Task Object",
@@ -662,7 +658,7 @@
                     "required": true,
                     "description": "Task ID"
                 },
-                "task": {
+                "data": {
                     "location": "json",
                     "type": "object",
                     "description": "Task Object",
@@ -726,7 +722,7 @@
                     "required": true,
                     "description": "Comma-separated list of Task IDs"
                 },
-                "task": {
+                "data": {
                     "location": "json",
                     "type": "array",
                     "items": {
@@ -787,7 +783,7 @@
             "uri": "time_entries/start",
             "summary": "Start Time Entry",
             "parameters": {
-                "timeEntry": {
+                "data": {
                     "location": "json",
                     "type": "object",
                     "description": "Time Entry Object",
@@ -877,59 +873,58 @@
                     "required": true,
                     "description": "Time Entry ID"
                 },
-                "parameters": {
-                    "timeEntry": {
-                        "location": "json",
-                        "type": "object",
-                        "description": "Time Entry Object",
-                        "properties": {
-                            "description": {
-                                "type": "string",
-                                "required": true,
-                                "description": "(string, required)"
+                "data": {
+                    "location": "json",
+                    "type": "object",
+                    "description": "Time Entry Object",
+                    "properties": {
+                        "description": {
+                            "type": "string",
+                            "required": true,
+                            "description": "(string, required)"
+                        },
+                        "wid": {
+                            "type": "integer",
+                            "required": false,
+                            "description": "workspace ID (integer, required if pid or tid not supplied)"
+                        },
+                        "pid": {
+                            "type": "integer",
+                            "required": true,
+                            "description": "pid: project ID (integer, not required)"
+                        },
+                        "tid": {
+                            "type": "integer",
+                            "required": false,
+                            "description": "tid: task ID (integer, not required)"
+                        },
+                        "billable": {
+                            "type": "boolean",
+                            "required": false,
+                            "default": false,
+                            "description": "(boolean, not required, default false, available for pro workspaces)"
+                        },
+                        "created_with": {
+                            "type": "string",
+                            "required": true,
+                            "description": "the name of your client app (string, required)"
+                        },
+                        "tags": {
+                            "type": "array",
+                            "required": false,
+                            "items": {
+                                "type": "string"
                             },
-                            "wid": {
-                                "type": "integer",
-                                "required": false,
-                                "description": "workspace ID (integer, required if pid or tid not supplied)"
-                            },
-                            "pid": {
-                                "type": "integer",
-                                "required": true,
-                                "description": "pid: project ID (integer, not required)"
-                            },
-                            "tid": {
-                                "type": "integer",
-                                "required": false,
-                                "description": "tid: task ID (integer, not required)"
-                            },
-                            "billable": {
-                                "type": "boolean",
-                                "required": false,
-                                "default": false,
-                                "description": "(boolean, not required, default false, available for pro workspaces)"
-                            },
-                            "created_with": {
-                                "type": "string",
-                                "required": true,
-                                "description": "the name of your client app (string, required)"
-                            },
-                            "tags": {
-                                "type": "array",
-                                "required": false,
-                                "items": {
-                                    "type": "string"
-                                },
-                                "description": "a list of tag names (array of strings, not required)"
-                            },
-                            "duronly": {
-                                "type": "boolean",
-                                "required": false,
-                                "description": "should Toggl show the start and stop time of this time entry? (boolean, not required)"
-                            }
+                            "description": "a list of tag names (array of strings, not required)"
+                        },
+                        "duronly": {
+                            "type": "boolean",
+                            "required": false,
+                            "description": "should Toggl show the start and stop time of this time entry? (boolean, not required)"
                         }
                     }
                 }
+
             }
         },
         "DeleteTimeEntry": {
@@ -974,7 +969,7 @@
             "uri": "signups",
             "summary": "Sign up new user",
             "parameters": {
-                "task": {
+                "data": {
                     "location": "json",
                     "type": "object",
                     "description": "User Object",
@@ -1073,7 +1068,7 @@
                     "required": true,
                     "description": "Workspace User ID"
                 },
-                "task": {
+                "data": {
                     "location": "json",
                     "type": "object",
                     "description": "Workspace User Object",

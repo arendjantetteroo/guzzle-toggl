@@ -8,7 +8,7 @@
             "uri": "clients",
             "summary": "Create Client",
             "parameters": {
-                "data": {
+                "client": {
                     "location": "json",
                     "type": "object",
                     "description": "Client Object",
@@ -66,7 +66,7 @@
                     "required": true,
                     "description": "Client ID"
                 },
-                "data": {
+                "client": {
                     "location": "json",
                     "type": "object",
                     "description": "Client Object",
@@ -142,7 +142,7 @@
             "uri": "projects",
             "summary": "Create Project",
             "parameters": {
-                "data": {
+                "project": {
                     "location": "json",
                     "type": "object",
                     "description": "Project Object",
@@ -219,7 +219,7 @@
                     "required": true,
                     "description": "Project ID"
                 },
-                "data": {
+                "project": {
                     "location": "json",
                     "type": "object",
                     "description": "Project Object",
@@ -303,7 +303,7 @@
             "uri": "project_users",
             "summary": "Create Project User",
             "parameters": {
-                "data": {
+                "project_user": {
                     "location": "json",
                     "type": "object",
                     "description": "Project User Object",
@@ -332,6 +332,7 @@
                         "rate": {
                             "type": "numerical",
                             "required": false,
+                            "default": true,
                             "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                         },
                         "fullname": {
@@ -354,7 +355,7 @@
                     "required": true,
                     "description": "Project ID"
                 },
-                "data": {
+                "project_user": {
                     "location": "json",
                     "type": "object",
                     "description": "Project User Object",
@@ -383,6 +384,7 @@
                         "rate": {
                             "type": "numerical",
                             "required": false,
+                            "default": true,
                             "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                         },
                         "fullname": {
@@ -412,7 +414,7 @@
             "uri": "project_users",
             "summary": "Create multiple Project Users",
             "parameters": {
-                "data": {
+                "project_user": {
                     "location": "json",
                     "type": "array",
                     "items": {
@@ -443,6 +445,7 @@
                             "rate": {
                                 "type": "numerical",
                                 "required": false,
+                                "default": true,
                                 "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                             },
                             "fullname": {
@@ -466,7 +469,7 @@
                     "required": true,
                     "description": "Comma separated list of Project User IDs"
                 },
-                "data": {
+                "project_user": {
                     "location": "json",
                     "type": "array",
                     "items": {
@@ -497,6 +500,7 @@
                             "rate": {
                                 "type": "numerical",
                                 "required": false,
+                                "default": true,
                                 "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                             },
                             "fullname": {
@@ -527,7 +531,7 @@
             "uri": "tags",
             "summary": "Create Tag",
             "parameters": {
-                "data": {
+                "tag": {
                     "location": "json",
                     "type": "object",
                     "description": "Tag Object",
@@ -557,7 +561,7 @@
                     "required": true,
                     "description": "Tag ID"
                 },
-                "data": {
+                "tag": {
                     "location": "json",
                     "type": "object",
                     "description": "Tag Object",
@@ -594,7 +598,7 @@
             "uri": "tasks",
             "summary": "Create Task",
             "parameters": {
-                "data": {
+                "task": {
                     "location": "json",
                     "type": "object",
                     "description": "Task Object",
@@ -658,7 +662,7 @@
                     "required": true,
                     "description": "Task ID"
                 },
-                "data": {
+                "task": {
                     "location": "json",
                     "type": "object",
                     "description": "Task Object",
@@ -722,7 +726,7 @@
                     "required": true,
                     "description": "Comma-separated list of Task IDs"
                 },
-                "data": {
+                "task": {
                     "location": "json",
                     "type": "array",
                     "items": {
@@ -783,7 +787,7 @@
             "uri": "time_entries/start",
             "summary": "Start Time Entry",
             "parameters": {
-                "data": {
+                "time_entry": {
                     "location": "json",
                     "type": "object",
                     "description": "Time Entry Object",
@@ -873,7 +877,7 @@
                     "required": true,
                     "description": "Time Entry ID"
                 },
-                "data": {
+                "time_entry": {
                     "location": "json",
                     "type": "object",
                     "description": "Time Entry Object",
@@ -924,7 +928,6 @@
                         }
                     }
                 }
-
             }
         },
         "DeleteTimeEntry": {
@@ -969,7 +972,7 @@
             "uri": "signups",
             "summary": "Sign up new user",
             "parameters": {
-                "data": {
+                "task": {
                     "location": "json",
                     "type": "object",
                     "description": "User Object",
@@ -1068,7 +1071,7 @@
                     "required": true,
                     "description": "Workspace User ID"
                 },
-                "data": {
+                "task": {
                     "location": "json",
                     "type": "object",
                     "description": "Workspace User Object",

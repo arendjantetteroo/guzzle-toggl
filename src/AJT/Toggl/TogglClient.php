@@ -9,7 +9,7 @@ use Guzzle\Plugin\Log\LogPlugin;
 use Guzzle\Plugin\CurlAuth\CurlAuthPlugin;
 
 /**
- * A TogglClient 
+ * A TogglClient
  */
 class TogglClient extends Client
 {
@@ -20,7 +20,7 @@ class TogglClient extends Client
      * The following array keys and values are available options:
      * - base_url: Base URL of web service
      * - api_key: API key
-     * 
+     *
      * See https://www.toggl.com/public/api#api_token for more information on the api token
      *
      * @param array|Collection $config Configuration data
@@ -40,28 +40,28 @@ class TogglClient extends Client
         $client = new self($config->get('base_url'), $config);
         // Attach a service description to the client
         if($config->get('apiVersion') == 'v8'){
-            $description = ServiceDescription::factory(__DIR__ . '/services_v8.json');    
+            $description = ServiceDescription::factory(__DIR__ . '/services_v8.json');
         } else {
-            $description = ServiceDescription::factory(__DIR__ . '/services_v6.json');    
+            $description = ServiceDescription::factory(__DIR__ . '/services_v6.json');
         }
-        
+
         $client->setDescription($description);
 
-		$client->setDefaultHeaders(array(
-			"Content-type" => "application/json",
-		));
-		
-		$authPlugin = new CurlAuthPlugin($config->get('api_key'), 'api_token');
-		$client->addSubscriber($authPlugin);
+        $client->setDefaultHeaders(array(
+            "Content-type" => "application/json",
+        ));
+
+        $authPlugin = new CurlAuthPlugin($config->get('api_key'), 'api_token');
+        $client->addSubscriber($authPlugin);
 
         if($config->get('debug')){
-            $client->addSubscriber(LogPlugin::getDebugPlugin());    
+            $client->addSubscriber(LogPlugin::getDebugPlugin());
         }
 
         return $client;
     }
 
-	/**
+    /**
      * Shortcut for executing Commands in the Definitions.
      *
      * @param string $method
@@ -75,9 +75,10 @@ class TogglClient extends Client
         $commandName = ucfirst($method);
 
         $result = parent::__call($commandName, $args);
+
         // Remove data field
-        if (isset($result['data'])) {
-        	return $result['data'];
+        if (is_array($result) && isset($result['data'])) {
+            return $result['data'];
         }
         return $result;
     }

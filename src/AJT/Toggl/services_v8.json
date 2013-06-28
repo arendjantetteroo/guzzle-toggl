@@ -332,7 +332,6 @@
                         "rate": {
                             "type": "numerical",
                             "required": false,
-                            "default": true,
                             "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                         },
                         "fullname": {
@@ -384,7 +383,6 @@
                         "rate": {
                             "type": "numerical",
                             "required": false,
-                            "default": true,
                             "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                         },
                         "fullname": {
@@ -445,7 +443,6 @@
                             "rate": {
                                 "type": "numerical",
                                 "required": false,
-                                "default": true,
                                 "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                             },
                             "fullname": {
@@ -500,7 +497,6 @@
                             "rate": {
                                 "type": "numerical",
                                 "required": false,
-                                "default": true,
                                 "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                             },
                             "fullname": {

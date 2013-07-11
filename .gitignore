@@ -16,3 +16,7 @@ app/config/parameters.yml
 apikey.php
 nbproject
 .project
+
+# phpstorm
+.idea*
+.idea**

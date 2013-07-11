@@ -11,7 +11,7 @@ use Guzzle\Plugin\CurlAuth\CurlAuthPlugin;
 /**
  * A TogglClient
  */
-class TogglClient extends Client
+class ReportsClient extends Client
 {
 
     /**
@@ -25,25 +25,22 @@ class TogglClient extends Client
      *
      * @param array|Collection $config Configuration data
      *
-     * @return self
+     * @return ReportsClient
      */
     public static function factory($config = array())
     {
         $default = array(
-            'base_url' => 'https://www.toggl.com/api/{apiVersion}',
+            'base_url' => 'https://www.toggl.com/reports/api/{apiVersion}',
             'debug' => false,
-            'apiVersion' => 'v6'
+            'apiVersion' => 'v2'
         );
-        $required = array('api_key', 'base_url','apiVersion');
+        $required = array('api_key', 'base_url', 'apiVersion');
         $config = Collection::fromConfig($config, $default, $required);
 
+        $serviceDescriptionFile = __DIR__ . '/reporting_' . $config->get('apiVersion') . '.json';
+        $description = ServiceDescription::factory($serviceDescriptionFile);
+
         $client = new self($config->get('base_url'), $config);
-        // Attach a service description to the client
-        if($config->get('apiVersion') == 'v8'){
-            $description = ServiceDescription::factory(__DIR__ . '/services_v8.json');
-        } else {
-            $description = ServiceDescription::factory(__DIR__ . '/services_v6.json');
-        }
 
         $client->setDescription($description);
 
@@ -54,7 +51,7 @@ class TogglClient extends Client
         $authPlugin = new CurlAuthPlugin($config->get('api_key'), 'api_token');
         $client->addSubscriber($authPlugin);
 
-        if($config->get('debug')){
+        if ($config->get('debug')) {
             $client->addSubscriber(LogPlugin::getDebugPlugin());
         }
 
@@ -76,10 +73,6 @@ class TogglClient extends Client
 
         $result = parent::__call($commandName, $args);
 
-        // Remove data field
-        if (is_array($result) && isset($result['data'])) {
-            return $result['data'];
-        }
         return $result;
     }
 }

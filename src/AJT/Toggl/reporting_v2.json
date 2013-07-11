@@ -1,0 +1,325 @@
+{
+    "name": "Toggl Reports",
+    "apiVersion": "v2",
+    "description": "Toggl Reports API v2",
+    "operations": {
+        "Weekly": {
+            "httpMethod": "GET",
+            "uri": "weekly",
+            "summary": "Get weekly report",
+            "parameters": {
+                "user_agent": {
+                    "location": "query",
+                    "type": "string",
+                    "required": true,
+                    "description": "string, required, the name of your application or your email address so we can get in touch in case you're doing something wrong."
+                },
+                "workspace_id": {
+                    "location": "query",
+                    "type": "integer",
+                    "required": true,
+                    "description": "integer, required. The workspace which data you want to access."
+                },
+                "since": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "string, ISO 8601 date (YYYY-MM-DD), by default until - 6 days."
+                },
+                "until": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "string, ISO 8601 date (YYYY-MM-DD), by default today"
+                },
+                "billable": {
+                    "location": "query",
+                    "type": "string",
+                    "default": "both",
+                    "description": "possible values: yes/no/both, default both"
+                },
+                "client_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "client ids separated by a comma, 0 if you want to filter out time entries without a client"
+                },
+                "project_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "project ids separated by a comma, 0 if you want to filter out time entries without a project"
+                },
+                "user_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "user ids separated by a comma"
+                },
+                "tag_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "tag ids separated by a comma, 0 if you want to filter out time entries without a tag"
+                },
+                "task_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "task ids separated by a comma, 0 if you want to filter out time entries without a task"
+                },
+                "time_entry_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "time entry ids separated by a comma"
+                },
+                "description": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "string, time entry description"
+                },
+                "order_field": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "title/day1/day2/day3/day4/day5/day6/day7/week_total in weekly report"
+                },
+                "order_desc": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "on/off, on for descending and off for ascending order"
+                },
+                "distinct_rates": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "on/off, default off"
+                },
+                "rounding": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "on/off, default off, rounds time according to workspace settings"
+                },
+                "display_hours": {
+                    "location": "query",
+                    "type": "string",
+                    "default": "minutes",
+                    "description": "decimal/minutes, display hours with minutes or as a decimal number, default minutes"
+                },
+                "grouping": {
+                    "location": "query",
+                    "type": "string",
+                    "default": "projects",
+                    "description": "users/projects, default projects. If one grouping is selected, the other acts as subgrouping."
+                },
+                "calculate": {
+                    "location": "query",
+                    "type": "string",
+                    "default": "time",
+                    "description": "time/earnings, default time"
+                }
+            }
+        },
+        "Details": {
+            "httpMethod": "GET",
+            "uri": "details",
+            "summary": "Get detailed report",
+            "parameters": {
+                "user_agent": {
+                    "location": "query",
+                    "type": "string",
+                    "required": true,
+                    "description": "string, required, the name of your application or your email address so we can get in touch in case you're doing something wrong."
+                },
+                "workspace_id": {
+                    "location": "query",
+                    "type": "integer",
+                    "required": true,
+                    "description": "integer, required. The workspace which data you want to access."
+                },
+                "since": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "string, ISO 8601 date (YYYY-MM-DD), by default until - 6 days."
+                },
+                "until": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "string, ISO 8601 date (YYYY-MM-DD), by default today"
+                },
+                "billable": {
+                    "location": "query",
+                    "type": "string",
+                    "default": "both",
+                    "description": "possible values: yes/no/both, default both"
+                },
+                "client_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "client ids separated by a comma, 0 if you want to filter out time entries without a client"
+                },
+                "project_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "project ids separated by a comma, 0 if you want to filter out time entries without a project"
+                },
+                "user_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "user ids separated by a comma"
+                },
+                "tag_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "tag ids separated by a comma, 0 if you want to filter out time entries without a tag"
+                },
+                "task_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "task ids separated by a comma, 0 if you want to filter out time entries without a task"
+                },
+                "time_entry_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "time entry ids separated by a comma"
+                },
+                "description": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "string, time entry description"
+                },
+                "order_field": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "date/description/duration/user in detailed reports"
+                },
+                "order_desc": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "on/off, on for descending and off for ascending order"
+                },
+                "distinct_rates": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "on/off, default off"
+                },
+                "rounding": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "on/off, default off, rounds time according to workspace settings"
+                },
+                "display_hours": {
+                    "location": "query",
+                    "type": "string",
+                    "default": "minutes",
+                    "description": "decimal/minutes, display hours with minutes or as a decimal number, default minutes"
+                },
+                "page": {
+                    "location": "query",
+                    "type": "integer",
+                    "default": 1,
+                    "description": "integer, default 1"
+                }
+            }
+        },
+        "Summary": {
+            "httpMethod": "GET",
+            "uri": "summary",
+            "summary": "Get summary report",
+            "parameters": {
+                "user_agent": {
+                    "location": "query",
+                    "type": "string",
+                    "required": true,
+                    "description": "string, required, the name of your application or your email address so we can get in touch in case you're doing something wrong."
+                },
+                "workspace_id": {
+                    "location": "query",
+                    "type": "integer",
+                    "required": true,
+                    "description": "integer, required. The workspace which data you want to access."
+                },
+                "since": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "string, ISO 8601 date (YYYY-MM-DD), by default until - 6 days."
+                },
+                "until": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "string, ISO 8601 date (YYYY-MM-DD), by default today"
+                },
+                "billable": {
+                    "location": "query",
+                    "type": "string",
+                    "default": "both",
+                    "description": "possible values: yes/no/both, default both"
+                },
+                "client_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "client ids separated by a comma, 0 if you want to filter out time entries without a client"
+                },
+                "project_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "project ids separated by a comma, 0 if you want to filter out time entries without a project"
+                },
+                "user_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "user ids separated by a comma"
+                },
+                "tag_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "tag ids separated by a comma, 0 if you want to filter out time entries without a tag"
+                },
+                "task_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "task ids separated by a comma, 0 if you want to filter out time entries without a task"
+                },
+                "time_entry_ids": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "time entry ids separated by a comma"
+                },
+                "description": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "string, time entry description"
+                },
+                "order_field": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "title/duration/amount in summary reports"
+                },
+                "order_desc": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "on/off, on for descending and off for ascending order"
+                },
+                "distinct_rates": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "on/off, default off"
+                },
+                "rounding": {
+                    "location": "query",
+                    "type": "string",
+                    "description": "on/off, default off, rounds time according to workspace settings"
+                },
+                "display_hours": {
+                    "location": "query",
+                    "type": "string",
+                    "default": "minutes",
+                    "description": "decimal/minutes, display hours with minutes or as a decimal number, default minutes"
+                },
+                "grouping": {
+                    "location": "query",
+                    "type": "string",
+                    "default": "projects",
+                    "description": "users/projects/clients, default projects. If one grouping is selected, the other acts as subgrouping."
+                },
+                "subgrouping": {
+                    "location": "query",
+                    "type": "string",
+                    "default": "time_entries",
+                    "description": "Following subgroupings are available in the summary report: projects (time_entries, tasks, users), clients (time_entries, tasks, projects, users), users (time_entries, tasks, projects, clients)"
+                }
+            }
+        }
+    }
+}

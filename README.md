@@ -3,6 +3,12 @@ guzzle-toggl
 
 A Toggl API client based on Guzzle PHP
 
+## Features
+
+* supports complete version 8 API with API Key authentication (thanks to @dirx)
+ * As the Toggl 6 Api will be deprecated on 1st september 2013 its removed in v0.8. 
+* supports Toggl Report Api v2 (thanks to @dirx)
+
 ## Installation
 
 The library is available through Composer, so its easy to get it. 
@@ -13,20 +19,6 @@ Simply add this to your `composer.json` file:
     }
     
 And run `composer install`
-
-## Features
-
-* supports complete version 8 API with API Key authentication (thanks to @dirx)
-* supports Toggl Report Api v2 (thanks to @dirx)
-
- * As the Toggl 6 Api will be deprecated on 1st september 2013 its removed in v0.8. 
-
-## Todo
-
-- [x] Complete the service description for v8 (thanks to @dirx)
-- [ ] Add some examples
-- [ ] Add tests
-- [ ] Add some Response models
 
 ## Usage
     
@@ -40,7 +32,7 @@ require dirname(__FILE__).'/../vendor/autoload.php';
 
 use AJT\Toggl\TogglClient;
 $toggl_token = ''; // Fill in your token here
-$toggl_client = TogglClient::factory(array('api_key' => $toggl_token)); // Defaults to the v8 api
+$toggl_client = TogglClient::factory(array('api_key' => $toggl_token));
 
 // if you want to see what is happening, add debug => true to the factory call
 $toggl_client = TogglClient::factory(array('api_key' => $toggl_token, 'debug' => true)); 
@@ -87,6 +79,12 @@ Copy the apikey-dist.php to apikey.php (in the root directory) and add your apik
 Afterwards you can execute the examples in the examples directory. 
 
 You can look at the services.json for details on what methods are available and what parameters are available to call them
+
+## Todo
+
+- [ ] Add some examples
+- [ ] Add tests
+- [ ] Add some Response models
 
 ## Contributions welcome
 

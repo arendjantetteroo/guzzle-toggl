@@ -32,7 +32,7 @@ class TogglClient extends Client
         $default = array(
             'base_url' => 'https://www.toggl.com/api/{apiVersion}',
             'debug' => false,
-            'apiVersion' => 'v6'
+            'apiVersion' => 'v8'
         );
         $required = array('api_key', 'base_url','apiVersion');
         $config = Collection::fromConfig($config, $default, $required);
@@ -42,7 +42,7 @@ class TogglClient extends Client
         if($config->get('apiVersion') == 'v8'){
             $description = ServiceDescription::factory(__DIR__ . '/services_v8.json');
         } else {
-            $description = ServiceDescription::factory(__DIR__ . '/services_v6.json');
+            die('Only v8 is supported at this time');
         }
 
         $client->setDescription($description);

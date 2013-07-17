@@ -17,7 +17,7 @@ foreach($workspaces as $workspace){
 	print $id . " - " . $workspace['name'] . "\n";
 
 	// Get all users in this workspace
-	$users = $toggl_client->getWorkspaceUsers(array('workspace-id' => $id));
+	$users = $toggl_client->getWorkspaceUsers(array('id' => $id));
 	print "This workspace has " . count($users) . " users\n";
 	foreach ($users as $user){
 		print $user['id'] . ' - ' . $user['fullname'] . "\n";

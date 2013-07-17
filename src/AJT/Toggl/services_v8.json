@@ -29,7 +29,7 @@
                             "description": "Notes for the client (string, not required)"
                         },
                         "hrate": {
-                            "type": "numerical",
+                            "type": "numeric",
                             "required": false,
                             "description": "The hourly rate for this client (float, not required, available only for pro workspaces)"
                         },
@@ -87,7 +87,7 @@
                             "description": "Notes for the client (string, not required)"
                         },
                         "hrate": {
-                            "type": "numerical",
+                            "type": "numeric",
                             "required": false,
                             "description": "The hourly rate for this client (float, not required, available only for pro workspaces)"
                         },
@@ -330,7 +330,7 @@
                             "description": "admin rights for this project (boolean, default false)"
                         },
                         "rate": {
-                            "type": "numerical",
+                            "type": "numeric",
                             "required": false,
                             "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                         },
@@ -381,7 +381,7 @@
                             "description": "admin rights for this project (boolean, default false)"
                         },
                         "rate": {
-                            "type": "numerical",
+                            "type": "numeric",
                             "required": false,
                             "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                         },
@@ -441,7 +441,7 @@
                                 "description": "admin rights for this project (boolean, default false)"
                             },
                             "rate": {
-                                "type": "numerical",
+                                "type": "numeric",
                                 "required": false,
                                 "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                             },
@@ -495,7 +495,7 @@
                                 "description": "admin rights for this project (boolean, default false)"
                             },
                             "rate": {
-                                "type": "numerical",
+                                "type": "numeric",
                                 "required": false,
                                 "description": "hourly rate for the project user (float, not-required, only for pro workspaces) in the currency of the project's client or in workspace default currency."
                             },

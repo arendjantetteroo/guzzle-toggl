@@ -953,11 +953,6 @@
                     "location": "query",
                     "description": "End date (must be ISO 8601 date and time string)",
                     "type": "string"
-                },
-                "at": {
-                    "location": "query",
-                    "description": "Last modified date (must be ISO 8601 date and time string)",
-                    "type": "string"
                 }
             }
         },

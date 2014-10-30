@@ -947,14 +947,12 @@
                 "start_date": {
                     "location": "query",
                     "description": "Start date (must be ISO 8601 date and time string)",
-                    "type": "string",
-                    "default": "true"
+                    "type": "string"
                 },
                 "end_date": {
                     "location": "query",
                     "description": "End date (must be ISO 8601 date and time string)",
-                    "type": "string",
-                    "default": "true"
+                    "type": "string"
                 }
             }
         },

@@ -890,7 +890,7 @@
                         },
                         "pid": {
                             "type": "integer",
-                            "required": true,
+                            "required": false,
                             "description": "pid: project ID (integer, not required)"
                         },
                         "tid": {

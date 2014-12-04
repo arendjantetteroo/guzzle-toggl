@@ -12,13 +12,9 @@ A Toggl API client based on Guzzle PHP
 ## Installation
 
 The library is available through Composer, so its easy to get it. 
-Simply add this to your `composer.json` file:
+Simply run this to install it:
 
-    "require": {
-        "ajt/guzzle-toggl": "dev-master"
-    }
-    
-And run `composer install`
+    composer require ajt/guzzle-toggl
 
 ## Usage
     

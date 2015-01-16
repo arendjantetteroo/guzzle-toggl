@@ -195,6 +195,11 @@
                 }
             }
         },
+        "GetProjects": {
+            "httpMethod": "GET",
+            "uri": "projects",
+            "summary": "Get projects"
+        },
         "GetProject": {
             "httpMethod": "GET",
             "uri": "projects/{id}",

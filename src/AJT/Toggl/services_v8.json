@@ -197,8 +197,22 @@
         },
         "GetProjects": {
             "httpMethod": "GET",
-            "uri": "projects",
-            "summary": "Get projects"
+             "uri": "workspaces/{id}/projects",
+             "summary": "Get projects",
+             "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
+                },
+                "active": {
+                    "location": "query",
+                    "description": "possible values true/false/both. By default true. If false, only archived projects are returned.",
+                    "type": "string",
+                    "default": "true"
+                }
+            }
         },
         "GetProject": {
             "httpMethod": "GET",

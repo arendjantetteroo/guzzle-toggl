@@ -227,6 +227,19 @@
                 }
             }
         },
+        "GetProjectTasks": {
+            "httpMethod": "GET",
+            "uri": "projects/{id}/tasks",
+            "summary": "Get Project tasks",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "type": "integer",
+                    "required": true,
+                    "description": "Project ID"
+                }
+            }
+        },
         "UpdateProject": {
             "httpMethod": "PUT",
             "uri": "projects/{id}",

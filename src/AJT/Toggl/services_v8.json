@@ -1130,6 +1130,19 @@
                 }
             }
         },
+        "GetWorkspaceTags": {
+            "httpMethod": "GET",
+            "uri": "workspaces/{id}/tags",
+            "summary": "Get workspace tags",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        },
         "GetWorkspaceTasks": {
             "httpMethod": "GET",
             "uri": "workspaces/{id}/tasks",

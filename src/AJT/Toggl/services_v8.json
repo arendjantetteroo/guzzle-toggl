@@ -810,6 +810,69 @@
                 }
             }
         },
+        "CreateTimeEntry": {
+            "httpMethod": "POST",
+            "uri": "time_entries",
+            "summary": "Create Time Entry",
+            "parameters": {
+                "time_entry": {
+                    "location": "json",
+                    "type": "object",
+                    "description": "Time Entry Object",
+                    "properties": {
+                        "description": {
+                            "type": "string",
+                            "required": true,
+                            "description": "(string, required)"
+                        },
+                        "wid": {
+                            "type": "integer",
+                            "required": false,
+                            "description": "workspace ID (integer, required if pid or tid not supplied)"
+                        },
+                        "pid": {
+                            "type": "integer",
+                            "required": true,
+                            "description": "pid: project ID (integer, not required)"
+                        },
+                        "tid": {
+                            "type": "integer",
+                            "required": false,
+                            "description": "tid: task ID (integer, not required)"
+                        },
+                        "billable": {
+                            "type": "boolean",
+                            "required": false,
+                            "default": false,
+                            "description": "(boolean, not required, default false, available for pro workspaces)"
+                        },
+                        "created_with": {
+                            "type": "string",
+                            "required": true,
+                            "description": "the name of your client app (string, required)"
+                        },
+                        "tags": {
+                            "type": "array",
+                            "required": false,
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "a list of tag names (array of strings, not required)"
+                        },
+                        "duration": {
+                            "type": "integer",
+                            "required": true,
+                            "description": "duration of time entry (integer, required)"
+                        },
+                        "start": {
+                            "type": "string",
+                            "required": true,
+                            "description": "start of time entry (string, required, ISO 8601 date and time)"
+                        }
+                    }
+                }
+            }
+        },
         "StartTimeEntry": {
             "httpMethod": "POST",
             "uri": "time_entries/start",
@@ -1064,6 +1127,19 @@
                     "description": "possible values true/false/both. By default true. If false, only archived projects are returned.",
                     "type": "string",
                     "default": "true"
+                }
+            }
+        },
+        "GetWorkspaceTags": {
+            "httpMethod": "GET",
+            "uri": "workspaces/{id}/tags",
+            "summary": "Get workspace tags",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
                 }
             }
         },

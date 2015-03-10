@@ -19,7 +19,7 @@ Simply run this to install it:
 ## Usage
     
 To use the Toggl API Client simply instantiate the client with the api key.
-More information on the key available at https://www.toggl.com/public/api#api_token
+More information on the key and authentication available at https://github.com/toggl/toggl_api_docs/blob/master/chapters/authentication.md
 
 ```php
 <?php

@@ -864,6 +864,11 @@
                             "required": true,
                             "description": "duration of time entry (integer, required)"
                         },
+                        "duronly": {
+                            "type": "boolean",
+                            "required": false,
+                            "description": "should Toggl show the start and stop time of this time entry? (boolean, not required)"
+                        },
                         "start": {
                             "type": "string",
                             "required": true,
@@ -1012,10 +1017,20 @@
                             },
                             "description": "a list of tag names (array of strings, not required)"
                         },
+                        "duration": {
+                            "type": "integer",
+                            "required": true,
+                            "description": "duration of time entry (integer, required)"
+                        },
                         "duronly": {
                             "type": "boolean",
                             "required": false,
                             "description": "should Toggl show the start and stop time of this time entry? (boolean, not required)"
+                        },
+                        "start": {
+                            "type": "string",
+                            "required": true,
+                            "description": "start of time entry (string, required, ISO 8601 date and time)"
                         }
                     }
                 }

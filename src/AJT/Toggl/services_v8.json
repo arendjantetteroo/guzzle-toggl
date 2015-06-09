@@ -962,6 +962,11 @@
                 }
             }
         },
+        "GetCurrentTimeEntry": {
+            "httpMethod": "GET",
+            "uri": "time_entries/current",
+            "summary": "Get Current Time Entry"
+        },
         "UpdateTimeEntry": {
             "httpMethod": "PUT",
             "uri": "time_entries/{id}",

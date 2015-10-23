@@ -9,3 +9,6 @@
  */
 $toggl_api_key = '';
 $toggl_api_version = 'v8';
+
+$username = 'mail@example.com';
+$password = 'p4ssw0rd';

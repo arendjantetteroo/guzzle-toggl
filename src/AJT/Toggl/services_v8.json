@@ -1035,6 +1035,16 @@
                             "type": "string",
                             "required": true,
                             "description": "password at least 6 characters long (string, required)"
+                        },
+                        "timezone": {
+                            "type": "string",
+                            "required": true,
+                            "description": "for example 'Etc/UTC' (string, required)"
+                        },
+                        "created_with": {
+                            "type": "string",
+                            "required": true,
+                            "description": "in free form, name of the app that signed the user app (string, required)"
                         }
                     }
                 }

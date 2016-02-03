@@ -73,13 +73,8 @@
                     "properties": {
                         "name": {
                             "type": "string",
-                            "required": true,
-                            "description": "The name of the client (string, required, unique in workspace)"
-                        },
-                        "wid": {
-                            "type": "integer",
-                            "required": true,
-                            "description": "workspace ID, where the client will be used (integer, required)"
+                            "required": false,
+                            "description": "The name of the client (string, not required, unique in workspace)"
                         },
                         "notes": {
                             "type": "string",
@@ -160,7 +155,7 @@
                         "cid": {
                             "type": "integer",
                             "required": false,
-                            "description": "client ID(integer, not required)"
+                            "description": "client ID (integer, not required)"
                         },
                         "active": {
                             "type": "boolean",
@@ -258,18 +253,18 @@
                     "properties": {
                         "name": {
                             "type": "string",
-                            "required": true,
-                            "description": "The name of the project (string, required, unique for client and workspace)"
+                            "required": false,
+                            "description": "The name of the project (string, not required, unique for client and workspace)"
                         },
                         "wid": {
                             "type": "integer",
-                            "required": true,
-                            "description": "workspace ID, where the project will be saved (integer, required)"
+                            "required": false,
+                            "description": "workspace ID, where the project will be saved (integer, not required)"
                         },
                         "cid": {
                             "type": "integer",
                             "required": false,
-                            "description": "client ID(integer, not required)"
+                            "description": "client ID (integer, not required)"
                         },
                         "active": {
                             "type": "boolean",
@@ -391,21 +386,6 @@
                     "type": "object",
                     "description": "Project User Object",
                     "properties": {
-                        "pid": {
-                            "type": "integer",
-                            "required": true,
-                            "description": "project ID (integer, required)"
-                        },
-                        "uid": {
-                            "type": "integer",
-                            "required": true,
-                            "description": "user ID, who is added to the project (integer, required)"
-                        },
-                        "wid": {
-                            "type": "integer",
-                            "required": false,
-                            "description": "workspace ID, where the project belongs to (integer, not-required, project's workspace id is used)"
-                        },
                         "manager": {
                             "type": "boolean",
                             "required": false,
@@ -505,21 +485,6 @@
                         "type": "object",
                         "description": "Project User Object",
                         "properties": {
-                            "pid": {
-                                "type": "integer",
-                                "required": true,
-                                "description": "project ID (integer, required)"
-                            },
-                            "uid": {
-                                "type": "integer",
-                                "required": true,
-                                "description": "user ID, who is added to the project (integer, required)"
-                            },
-                            "wid": {
-                                "type": "integer",
-                                "required": false,
-                                "description": "workspace ID, where the project belongs to (integer, not-required, project's workspace id is used)"
-                            },
                             "manager": {
                                 "type": "boolean",
                                 "required": false,
@@ -598,11 +563,6 @@
                             "type": "string",
                             "required": true,
                             "description": "The name of the tag (string, required, unique in workspace)"
-                        },
-                        "wid": {
-                            "type": "integer",
-                            "required": true,
-                            "description": "workspace ID, where the tag will be used (integer, required). Workspace id (wid) can't be changed."
                         }
                     }
                 }
@@ -697,18 +657,8 @@
                     "properties": {
                         "name": {
                             "type": "string",
-                            "required": true,
-                            "description": "The name of the task (string, required, unique in project)"
-                        },
-                        "pid": {
-                            "type": "integer",
-                            "required": true,
-                            "description": "project ID for the task (integer, required). Project id (pid) can't be changed on update."
-                        },
-                        "wid": {
-                            "type": "integer",
                             "required": false,
-                            "description": "workspace ID, where the task will be saved (integer, project's workspace id is used when not supplied). Workspace id (wid) can't be changed on update."
+                            "description": "The name of the task (string, not required, unique in project)"
                         },
                         "uid": {
                             "type": "integer",
@@ -763,18 +713,8 @@
                         "properties": {
                             "name": {
                                 "type": "string",
-                                "required": true,
-                                "description": "The name of the task (string, required, unique in project)"
-                            },
-                            "pid": {
-                                "type": "integer",
-                                "required": true,
-                                "description": "project ID for the task (integer, required). Project id (pid) can't be changed on update."
-                            },
-                            "wid": {
-                                "type": "integer",
                                 "required": false,
-                                "description": "workspace ID, where the task will be saved (integer, project's workspace id is used when not supplied). Workspace id (wid) can't be changed on update."
+                                "description": "The name of the task (string, not required, unique in project)"
                             },
                             "uid": {
                                 "type": "integer",
@@ -822,8 +762,8 @@
                     "properties": {
                         "description": {
                             "type": "string",
-                            "required": true,
-                            "description": "(string, required)"
+                            "required": false,
+                            "description": "(string, not required)"
                         },
                         "wid": {
                             "type": "integer",
@@ -832,7 +772,7 @@
                         },
                         "pid": {
                             "type": "integer",
-                            "required": true,
+                            "required": false,
                             "description": "pid: project ID (integer, not required)"
                         },
                         "tid": {
@@ -890,8 +830,8 @@
                     "properties": {
                         "description": {
                             "type": "string",
-                            "required": true,
-                            "description": "(string, required)"
+                            "required": false,
+                            "description": "(string, not required)"
                         },
                         "wid": {
                             "type": "integer",
@@ -900,7 +840,7 @@
                         },
                         "pid": {
                             "type": "integer",
-                            "required": true,
+                            "required": false,
                             "description": "pid: project ID (integer, not required)"
                         },
                         "tid": {
@@ -985,8 +925,8 @@
                     "properties": {
                         "description": {
                             "type": "string",
-                            "required": true,
-                            "description": "(string, required)"
+                            "required": false,
+                            "description": "(string, not required)"
                         },
                         "wid": {
                             "type": "integer",
@@ -1011,8 +951,8 @@
                         },
                         "created_with": {
                             "type": "string",
-                            "required": true,
-                            "description": "the name of your client app (string, required)"
+                            "required": false,
+                            "description": "the name of your client app (string, not required)"
                         },
                         "tags": {
                             "type": "array",
@@ -1024,8 +964,8 @@
                         },
                         "duration": {
                             "type": "integer",
-                            "required": true,
-                            "description": "duration of time entry (integer, required)"
+                            "required": false,
+                            "description": "duration of time entry (integer, not required)"
                         },
                         "duronly": {
                             "type": "boolean",
@@ -1034,8 +974,8 @@
                         },
                         "start": {
                             "type": "string",
-                            "required": true,
-                            "description": "start of time entry (string, required, ISO 8601 date and time)"
+                            "required": false,
+                            "description": "start of time entry (string, not required, ISO 8601 date and time)"
                         }
                     }
                 }

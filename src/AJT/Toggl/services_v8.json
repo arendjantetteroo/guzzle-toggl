@@ -1132,6 +1132,30 @@
                 }
             }
         },
+        "InviteWorkspaceUser": {
+            "httpMethod": "POST",
+            "uri": "workspaces/{id}/invite",
+            "summary": "Invite User to Workspace",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "type": "integer",
+                    "required": true,
+                    "description": "Workspace ID"
+                },
+                "emails": {
+                    "location": "json",
+                    "type": "array",
+                    "required": true,
+                    "description": "List of valid emails (array, required)",
+                    "items": {
+                        "type": "string",
+                        "required": true,
+                        "description": "The valid email of user who must be invite to this workspace (string, required)"
+                    }
+                }
+            }
+        },
         "UpdateWorkspaceUser": {
             "httpMethod": "PUT",
             "uri": "workspace_users/{id}",

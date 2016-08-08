@@ -1050,6 +1050,19 @@
                 }
             }
         },
+        "GetGroups":{
+            "httpMethod": "GET",
+            "uri": "workspaces/{id}/groups",
+            "summary": "Get groups",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        },
         "GetWorkspaces": {
             "httpMethod": "GET",
             "uri": "workspaces",
@@ -1058,6 +1071,19 @@
         "GetWorkspaceUsers": {
             "httpMethod": "GET",
             "uri": "workspaces/{id}/users",
+            "summary": "Get workspace users",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        },
+        "GetWorkspaceWorkspaceUsers": {
+            "httpMethod": "GET",
+            "uri": "workspaces/{id}/workspace_users",
             "summary": "Get workspace users",
             "parameters": {
                 "id": {

@@ -1084,7 +1084,7 @@
         "GetWorkspaceWorkspaceUsers": {
             "httpMethod": "GET",
             "uri": "workspaces/{id}/workspace_users",
-            "summary": "Get workspace users",
+            "summary": "Many-to-many middle object containing information about a specific user's access in the specific workspace",
             "parameters": {
                 "id": {
                     "location": "uri",

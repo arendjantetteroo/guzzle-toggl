@@ -113,7 +113,7 @@
             "uri": "clients/{ids}",
             "summary": "Delete multiple Clients",
             "parameters": {
-                "id": {
+                "ids": {
                     "location": "uri",
                     "type": "string",
                     "required": true,
@@ -330,7 +330,7 @@
             "uri": "projects/{ids}",
             "summary": "Delete multiple Project",
             "parameters": {
-                "id": {
+                "ids": {
                     "location": "uri",
                     "type": "string",
                     "required": true,

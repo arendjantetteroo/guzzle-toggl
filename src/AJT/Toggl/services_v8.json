@@ -108,6 +108,19 @@
                 }
             }
         },
+        "DeleteClients": {
+            "httpMethod": "DELETE",
+            "uri": "clients/{ids}",
+            "summary": "Delete multiple Clients",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "type": "string",
+                    "required": true,
+                    "description": "Comma separated list of Client IDs"
+                }
+            }
+        },
         "GetClients": {
             "httpMethod": "GET",
             "uri": "clients",
@@ -309,6 +322,19 @@
                     "type": "integer",
                     "required": true,
                     "description": "Project ID"
+                }
+            }
+        },
+        "DeleteProjects": {
+            "httpMethod": "DELETE",
+            "uri": "projects/{ids}",
+            "summary": "Delete multiple Project",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "type": "string",
+                    "required": true,
+                    "description": "Comma separated list of Project IDs"
                 }
             }
         },

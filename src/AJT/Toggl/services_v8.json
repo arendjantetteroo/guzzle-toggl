@@ -108,19 +108,6 @@
                 }
             }
         },
-        "DeleteClients": {
-            "httpMethod": "DELETE",
-            "uri": "clients/{ids}",
-            "summary": "Delete multiple Clients",
-            "parameters": {
-                "ids": {
-                    "location": "uri",
-                    "type": "string",
-                    "required": true,
-                    "description": "Comma separated list of Client IDs"
-                }
-            }
-        },
         "GetClients": {
             "httpMethod": "GET",
             "uri": "clients",

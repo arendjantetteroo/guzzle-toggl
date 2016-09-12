@@ -1110,6 +1110,18 @@
                     "description": "possible values true/false/both. By default true. If false, only archived projects are returned.",
                     "type": "string",
                     "default": "true"
+                },
+                "actual_hours": {
+                    "location": "query",
+                    "description": "If true, the completed hours per project are returned.",
+                    "type": "string",
+                    "default": "false"
+                },
+                "only_templates": {
+                    "location": "query",
+                    "description": "If true, only the project templates are returned.",
+                    "type": "string",
+                    "default": "false"
                 }
             }
         },

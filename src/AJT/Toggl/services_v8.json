@@ -1145,6 +1145,19 @@
                 }
             }
         },
+        "GetWorkspaceProjectUsers": {
+            "httpMethod": "GET",
+            "uri": "workspaces/{id}/project_users",
+            "summary": "Get workspace project users",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        },
         "UpdateWorkspaceUser": {
             "httpMethod": "PUT",
             "uri": "workspace_users/{id}",

@@ -19,7 +19,8 @@ class TogglClient extends Client
      *
      * The following array keys and values are available options:
      * - base_url: Base URL of web service
-     * - api_key: API key
+     * - username: username or API key
+     * - password: password (if empty, then username is a API key)
      *
      * See https://www.toggl.com/public/api#api_token for more information on the api token
      *
@@ -32,9 +33,12 @@ class TogglClient extends Client
         $default = array(
             'base_url' => 'https://www.toggl.com/api/{apiVersion}',
             'debug' => false,
-            'apiVersion' => 'v8'
+            'apiVersion' => 'v8',
+            'api_key' => '',
+            'username' => '',
+            'password' => ''
         );
-        $required = array('api_key', 'base_url','apiVersion');
+        $required = array('api_key', 'username', 'password', 'base_url','apiVersion');
         $config = Collection::fromConfig($config, $default, $required);
 
         $client = new self($config->get('base_url'), $config);
@@ -51,7 +55,15 @@ class TogglClient extends Client
             "Content-type" => "application/json",
         ));
 
-        $authPlugin = new CurlAuthPlugin($config->get('api_key'), 'api_token');
+        if(!empty($config->get('api_key'))) {
+            $config->set('username', $config->get('api_key'));
+            $config->set('password', 'api_token');
+        }
+
+        if(empty($config->get('password'))) {
+            $config->set('password', 'api_token');
+        }
+        $authPlugin = new CurlAuthPlugin($config->get('username'), $config->get('password'));
         $client->addSubscriber($authPlugin);
 
         if($config->get('debug')){

@@ -1063,6 +1063,19 @@
                 }
             }
         },
+        "GetGroups":{
+            "httpMethod": "GET",
+            "uri": "workspaces/{id}/groups",
+            "summary": "Get groups",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        },
         "GetWorkspaces": {
             "httpMethod": "GET",
             "uri": "workspaces",
@@ -1072,6 +1085,19 @@
             "httpMethod": "GET",
             "uri": "workspaces/{id}/users",
             "summary": "Get workspace users",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        },
+        "GetWorkspaceWorkspaceUsers": {
+            "httpMethod": "GET",
+            "uri": "workspaces/{id}/workspace_users",
+            "summary": "Many-to-many middle object containing information about a specific user's access in the specific workspace",
             "parameters": {
                 "id": {
                     "location": "uri",
@@ -1154,6 +1180,30 @@
                     "description": "possible values true/false/both. By default true. If false, only done tasks are returned.",
                     "type": "string",
                     "default": "true"
+                }
+            }
+        },
+        "InviteWorkspaceUser": {
+            "httpMethod": "POST",
+            "uri": "workspaces/{id}/invite",
+            "summary": "Invite User to Workspace",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "type": "integer",
+                    "required": true,
+                    "description": "Workspace ID"
+                },
+                "emails": {
+                    "location": "json",
+                    "type": "array",
+                    "required": true,
+                    "description": "List of valid emails (array, required)",
+                    "items": {
+                        "type": "string",
+                        "required": true,
+                        "description": "The valid email of user who must be invite to this workspace (string, required)"
+                    }
                 }
             }
         },

@@ -312,6 +312,19 @@
                 }
             }
         },
+        "DeleteProjects": {
+            "httpMethod": "DELETE",
+            "uri": "projects/{ids}",
+            "summary": "Delete multiple Project",
+            "parameters": {
+                "ids": {
+                    "location": "uri",
+                    "type": "string",
+                    "required": true,
+                    "description": "Comma separated list of Project IDs"
+                }
+            }
+        },
         "GetProjectUsers": {
             "httpMethod": "GET",
             "uri": "projects/{id}/project_users",
@@ -1123,6 +1136,18 @@
                     "description": "possible values true/false/both. By default true. If false, only archived projects are returned.",
                     "type": "string",
                     "default": "true"
+                },
+                "actual_hours": {
+                    "location": "query",
+                    "description": "If true, the completed hours per project are returned.",
+                    "type": "string",
+                    "default": "false"
+                },
+                "only_templates": {
+                    "location": "query",
+                    "description": "If true, only the project templates are returned.",
+                    "type": "string",
+                    "default": "false"
                 }
             }
         },
@@ -1179,6 +1204,19 @@
                         "required": true,
                         "description": "The valid email of user who must be invite to this workspace (string, required)"
                     }
+                }
+            }
+        },
+        "GetWorkspaceProjectUsers": {
+            "httpMethod": "GET",
+            "uri": "workspaces/{id}/project_users",
+            "summary": "Get workspace project users",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Workspace ID",
+                    "required": true,
+                    "type": "integer"
                 }
             }
         },

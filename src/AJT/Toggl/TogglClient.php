@@ -2,23 +2,28 @@
 
 namespace AJT\Toggl;
 
-use Guzzle\Common\Collection;
-use Guzzle\Service\Client;
-use Guzzle\Service\Description\ServiceDescription;
-use Guzzle\Plugin\Log\LogPlugin;
-use Guzzle\Plugin\CurlAuth\CurlAuthPlugin;
+use Guzzle\Service\Loader\JsonLoader;
+use GuzzleHttp\Client;
+use GuzzleHttp\Command\Guzzle\Description;
+use GuzzleHttp\Command\Guzzle\GuzzleClient;
+use Symfony\Component\Config\FileLocator;
+
+//use Guzzle\Common\Collection;
+//use Guzzle\Service\Client;
+//use Guzzle\Service\Description\ServiceDescription;
+//use Guzzle\Plugin\Log\LogPlugin;
+//use Guzzle\Plugin\CurlAuth\CurlAuthPlugin;
 
 /**
  * A TogglClient
  */
-class TogglClient extends Client
+class TogglClient extends GuzzleClient
 {
 
     /**
      * Factory method to create a new TogglClient
      *
      * The following array keys and values are available options:
-     * - base_url: Base URL of web service
      * - username: username or API key
      * - password: password (if empty, then username is a API key)
      *
@@ -28,47 +33,74 @@ class TogglClient extends Client
      *
      * @return self
      */
-    public static function factory($config = array())
+    public static function factory($config = [])
     {
-        $default = array(
-            'base_url' => 'https://www.toggl.com/api/{apiVersion}',
-            'debug' => false,
-            'apiVersion' => 'v8',
-            'api_key' => '',
-            'username' => '',
-            'password' => ''
-        );
-        $required = array('api_key', 'username', 'password', 'base_url','apiVersion');
-        $config = Collection::fromConfig($config, $default, $required);
+//        $default = [
+//            'base_url'   => 'https://www.toggl.com/api/{apiVersion}',
+//            'debug'      => false,
+//            'apiVersion' => 'v8',
+//            'api_key'    => '',
+//            'username'   => '',
+//            'password'   => '',
+//        ];
+//        $required = [
+//            'api_key',
+//            'username',
+//            'password',
+//            'base_url',
+//            'apiVersion',
+//        ];
+        //  $config = Collection::fromConfig($config, $default, $required);
 
-        $client = new self($config->get('base_url'), $config);
+        $clientConfig = [];
+        if (isset($config['api_key'])) {
+            $clientConfig['auth'] = [
+                $config['api_key'],
+                'api_token',
+            ];
+
+        }
+        if (isset($config['username'])) {
+            $clientConfig['auth'] = [
+                $config['username'],
+                $config['password'],
+            ];
+        }
+
+        if (isset($config['debug']) && is_bool($config['debug'])) {
+            $clientConfig['debug'] = $config['debug'];
+        }
+
+
+
+
+        $guzzleClient = new Client($clientConfig);
+
+
         // Attach a service description to the client
-        if($config->get('apiVersion') == 'v8'){
-            $description = ServiceDescription::factory(__DIR__ . '/services_v8.json');
-        } else {
-            die('Only v8 is supported at this time');
-        }
+//        if($config->get('apiVersion') == 'v8'){
+//            //$description = ServiceDescription::factory(__DIR__ . '/services_v8.json');
+//        } else {
+//            die('Only v8 is supported at this time');
+//        }
 
-        $client->setDescription($description);
 
-        $client->setDefaultHeaders(array(
-            "Content-type" => "application/json",
-        ));
 
-        if(!empty($config->get('api_key'))) {
-            $config->set('username', $config->get('api_key'));
-            $config->set('password', 'api_token');
-        }
 
-        if(empty($config->get('password'))) {
-            $config->set('password', 'api_token');
-        }
-        $authPlugin = new CurlAuthPlugin($config->get('username'), $config->get('password'));
-        $client->addSubscriber($authPlugin);
 
-        if($config->get('debug')){
-            $client->addSubscriber(LogPlugin::getDebugPlugin());
-        }
+
+
+
+        $configDirectories = [__DIR__];
+        $locator = new FileLocator($configDirectories);
+
+        $jsonLoader = new JsonLoader($locator);
+
+        $description = $jsonLoader->load($locator->locate('services_v8.json'));
+        $description = new Description($description);
+        $client = new GuzzleClient($guzzleClient, $description);
+
+
 
         return $client;
     }
@@ -82,16 +114,16 @@ class TogglClient extends Client
      * @return mixed|void
      *
      */
-    public function __call($method, $args = null)
+    public function __call($method, array $args)
     {
         $commandName = ucfirst($method);
-
+        /** @var \GuzzleHttp\Command\Result $result */
         $result = parent::__call($commandName, $args);
-
         // Remove data field
         if (is_array($result) && isset($result['data'])) {
             return $result['data'];
         }
+
         return $result;
     }
 }

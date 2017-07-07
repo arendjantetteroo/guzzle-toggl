@@ -29,28 +29,43 @@ class TogglClient extends GuzzleClient
      *
      * See https://www.toggl.com/public/api#api_token for more information on the api token
      *
-     * @param array|Collection $config Configuration data
-     *
-     * @return self
+     * @param array $config Configuration data
+     * @return TogglClient
+     * @throws \Exception
      */
     public static function factory($config = [])
     {
-//        $default = [
-//            'base_url'   => 'https://www.toggl.com/api/{apiVersion}',
-//            'debug'      => false,
-//            'apiVersion' => 'v8',
-//            'api_key'    => '',
-//            'username'   => '',
-//            'password'   => '',
-//        ];
-//        $required = [
-//            'api_key',
-//            'username',
-//            'password',
-//            'base_url',
-//            'apiVersion',
-//        ];
-        //  $config = Collection::fromConfig($config, $default, $required);
+
+        $clientConfig = self::getClientConfig($config);
+
+        $guzzleClient = new Client($clientConfig);
+
+        if (isset($config['apiVersion']) && $config['apiVersion'] !== 'v8') {
+            throw new \Exception('Only v8 is supported at this time');
+
+        }
+
+        $description = self::getAPIDescriptionByJsonFile('services_v8.json');
+        $client = new GuzzleClient($guzzleClient, $description);
+
+        return $client;
+    }
+
+    protected static function getAPIDescriptionByJsonFile($file)
+    {
+        $configDirectories = [__DIR__];
+        $locator = new FileLocator($configDirectories);
+
+        $jsonLoader = new JsonLoader($locator);
+
+        $description = $jsonLoader->load($locator->locate($file));
+        $description = new Description($description);
+
+        return $description;
+    }
+
+    private static function getClientConfig($config)
+    {
 
         $clientConfig = [];
         if (isset($config['api_key'])) {
@@ -59,50 +74,26 @@ class TogglClient extends GuzzleClient
                 'api_token',
             ];
 
-        }
-        if (isset($config['username'])) {
+        } elseif (isset($config['username'])) {
+            if (!isset($config['password'])) {
+                $config['password'] = 'api_token';
+            }
+
             $clientConfig['auth'] = [
                 $config['username'],
                 $config['password'],
             ];
+
+        } else {
+            throw new \Exception('Provide authentication details');
         }
 
         if (isset($config['debug']) && is_bool($config['debug'])) {
             $clientConfig['debug'] = $config['debug'];
         }
 
+        return $clientConfig;
 
-
-
-        $guzzleClient = new Client($clientConfig);
-
-
-        // Attach a service description to the client
-//        if($config->get('apiVersion') == 'v8'){
-//            //$description = ServiceDescription::factory(__DIR__ . '/services_v8.json');
-//        } else {
-//            die('Only v8 is supported at this time');
-//        }
-
-
-
-
-
-
-
-
-        $configDirectories = [__DIR__];
-        $locator = new FileLocator($configDirectories);
-
-        $jsonLoader = new JsonLoader($locator);
-
-        $description = $jsonLoader->load($locator->locate('services_v8.json'));
-        $description = new Description($description);
-        $client = new GuzzleClient($guzzleClient, $description);
-
-
-
-        return $client;
     }
 
     /**

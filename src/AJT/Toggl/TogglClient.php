@@ -8,12 +8,6 @@ use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use Symfony\Component\Config\FileLocator;
 
-//use Guzzle\Common\Collection;
-//use Guzzle\Service\Client;
-//use Guzzle\Service\Description\ServiceDescription;
-//use Guzzle\Plugin\Log\LogPlugin;
-//use Guzzle\Plugin\CurlAuth\CurlAuthPlugin;
-
 /**
  * A TogglClient
  */
@@ -64,7 +58,7 @@ class TogglClient extends GuzzleClient
         return $description;
     }
 
-    private static function getClientConfig($config)
+    protected static function getClientConfig($config)
     {
 
         $clientConfig = [];

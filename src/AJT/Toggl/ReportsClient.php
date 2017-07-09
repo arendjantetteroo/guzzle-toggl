@@ -2,16 +2,13 @@
 
 namespace AJT\Toggl;
 
-use Guzzle\Common\Collection;
-use Guzzle\Service\Client;
-use Guzzle\Service\Description\ServiceDescription;
-use Guzzle\Plugin\Log\LogPlugin;
-use Guzzle\Plugin\CurlAuth\CurlAuthPlugin;
+use GuzzleHttp\Client;
+use GuzzleHttp\Command\Guzzle\GuzzleClient;
 
 /**
  * A TogglClient
  */
-class ReportsClient extends Client
+class ReportsClient extends TogglClient
 {
 
     /**
@@ -23,37 +20,24 @@ class ReportsClient extends Client
      *
      * See https://www.toggl.com/public/api#api_token for more information on the api token
      *
-     * @param array|Collection $config Configuration data
-     *
+     * @param array $config Configuration data
      * @return ReportsClient
+     * @throws \Exception
      */
-    public static function factory($config = array())
+    public static function factory($config = [])
     {
-        $default = array(
-            'base_url' => 'https://www.toggl.com/reports/api/{apiVersion}',
-            'debug' => false,
-            'apiVersion' => 'v2'
-        );
-        $required = array('api_key', 'base_url', 'apiVersion');
-        $config = Collection::fromConfig($config, $default, $required);
 
-        $serviceDescriptionFile = __DIR__ . '/reporting_' . $config->get('apiVersion') . '.json';
-        $description = ServiceDescription::factory($serviceDescriptionFile);
+        $clientConfig = self::getClientConfig($config);
 
-        $client = new self($config->get('base_url'), $config);
+        $guzzleClient = new Client($clientConfig);
 
-        $client->setDescription($description);
+        if (isset($config['apiVersion']) && $config['apiVersion'] !== 'v2') {
+            throw new \Exception('Only v8 is supported at this time');
 
-        $client->setDefaultHeaders(array(
-            "Content-type" => "application/json",
-        ));
-
-        $authPlugin = new CurlAuthPlugin($config->get('api_key'), 'api_token');
-        $client->addSubscriber($authPlugin);
-
-        if ($config->get('debug')) {
-            $client->addSubscriber(LogPlugin::getDebugPlugin());
         }
+
+        $description = self::getAPIDescriptionByJsonFile('reporting_v2.json');
+        $client = new GuzzleClient($guzzleClient, $description);
 
         return $client;
     }
@@ -67,7 +51,7 @@ class ReportsClient extends Client
      * @return mixed|void
      *
      */
-    public function __call($method, $args = null)
+    public function __call($method, array $args)
     {
         $commandName = ucfirst($method);
 

@@ -12,7 +12,9 @@
         }
     ],
     "require": {
-        "guzzle/guzzle": "~3.3"
+        "guzzlehttp/guzzle": "^6.2",
+        "guzzlehttp/guzzle-services": "^1.1",
+        "gimler/guzzle-description-loader": "^0.0.4"
     },
     "extra": {
         "branch-alias": {

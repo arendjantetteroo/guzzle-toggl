@@ -8,6 +8,7 @@
       "httpMethod": "POST",
       "uri": "clients",
       "summary": "Create Client",
+      "responseModel": "getResponse",
       "parameters": {
         "client": {
           "location": "json",
@@ -47,6 +48,7 @@
       "httpMethod": "GET",
       "uri": "clients/{id}",
       "summary": "Get Client Details",
+      "responseModel": "getResponse",
       "parameters": {
         "id": {
           "location": "uri",
@@ -60,6 +62,7 @@
       "httpMethod": "PUT",
       "uri": "clients/{id}",
       "summary": "Update Client",
+      "responseModel": "getResponse",
       "parameters": {
         "id": {
           "location": "uri",
@@ -100,6 +103,7 @@
       "httpMethod": "DELETE",
       "uri": "clients/{id}",
       "summary": "Delete Client",
+      "responseModel": "getResponse",
       "parameters": {
         "id": {
           "location": "uri",

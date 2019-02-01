@@ -322,6 +322,18 @@
           "type": "string",
           "default": "time_entries",
           "description": "Following subgroupings are available in the summary report: projects (time_entries, tasks, users), clients (time_entries, tasks, projects, users), users (time_entries, tasks, projects, clients)"
+        },
+        "subgrouping_ids": {
+          "location": "query",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether returned items will contain 'ids' key containing comma separated group item ID values."
+        },
+        "grouped_time_entry_ids": {
+          "location": "query",
+          "type": "boolean",
+          "default": false,
+          "description": "Whether returned items will contain 'time_entry_ids' key containing comma separated time entries ID values for given item."
         }
       }
     }

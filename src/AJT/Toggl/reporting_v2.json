@@ -2,7 +2,7 @@
   "name": "Toggl Reports",
   "apiVersion": "v2",
   "description": "Toggl Reports API v2",
-  "baseUri": "https://www.toggl.com/reports/api/v2/",
+  "baseUri": "https://api.track.toggl.com/reports/api/v2/",
   "operations": {
     "Weekly": {
       "httpMethod": "GET",

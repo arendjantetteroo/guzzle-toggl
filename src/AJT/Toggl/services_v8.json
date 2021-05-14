@@ -2,7 +2,7 @@
   "name": "Toggl",
   "apiVersion": "v8",
   "description": "Toggl API v8",
-  "baseUri": "https://www.toggl.com/api/v8/",
+  "baseUri": "https://api.track.toggl.com/api/v8/",
   "operations": {
     "CreateClient": {
       "httpMethod": "POST",

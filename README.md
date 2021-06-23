@@ -7,7 +7,9 @@ A Toggl API client based on Guzzle PHP
 
 * supports complete version 8 API with API Key authentication (thanks to @dirx)
 * supports Toggl Report Api v2 (thanks to @dirx)
-* now based on guzzle 6 (thanks to @echron)
+* now based on guzzle 7 
+
+See v1.1.0 for a guzzle6 version
 
 ## Installation
 
@@ -24,7 +26,7 @@ More information on the key and authentication available at https://github.com/t
 ```php
 <?php
 
-require dirname(__FILE__).'/../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 use AJT\Toggl\TogglClient;
 $toggl_token = ''; // Fill in your token here
@@ -38,7 +40,7 @@ Invoke Commands using our `__call` method (auto-complete phpDocs are included)
 
 ```php
 <?php 
-
+use AJT\Toggl\TogglClient;
 $toggl_client = TogglClient::factory(array('api_key' => $toggl_token));
 
 $workspaces = $toggl_client->getWorkspaces(array());
@@ -53,7 +55,7 @@ Or Use the `getCommand` method (in this case you need to work with the $response
 
 ```php
 <?php 
-
+use AJT\Toggl\TogglClient;
 $toggl_client = TogglClient::factory(array('api_key' => $toggl_token));
 
 //Retrieve the Command from Guzzle

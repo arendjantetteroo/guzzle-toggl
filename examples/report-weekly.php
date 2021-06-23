@@ -1,8 +1,8 @@
 <?php
 
-require dirname(__FILE__) . '/../apikey.php';
+require __DIR__ . '/../apikey.php';
 
-require dirname(__FILE__) . '/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use \AJT\Toggl\ReportsClient;
 

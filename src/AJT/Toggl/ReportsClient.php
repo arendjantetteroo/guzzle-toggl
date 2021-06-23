@@ -3,7 +3,6 @@
 namespace AJT\Toggl;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Command\Guzzle\GuzzleClient;
 
 /**
  * A TogglClient
@@ -24,22 +23,16 @@ class ReportsClient extends TogglClient
      * @return ReportsClient
      * @throws \Exception
      */
-    public static function factory($config = [])
+    public static function factory(array $config = [])
     {
-
-        $clientConfig = self::getClientConfig($config);
-
-        $guzzleClient = new Client($clientConfig);
+        $guzzleClient = new Client(self::getClientConfig($config));
 
         if (isset($config['apiVersion']) && $config['apiVersion'] !== 'v2') {
-            throw new \Exception('Only v8 is supported at this time');
-
+            throw new InvalidApiVersionException('Only v2 of the reporting api is supported at this time');
         }
 
         $description = self::getAPIDescriptionByJsonFile('reporting_v2.json');
-        $client = new GuzzleClient($guzzleClient, $description);
-
-        return $client;
+        return new self($guzzleClient, $description);
     }
 
     /**
@@ -53,10 +46,6 @@ class ReportsClient extends TogglClient
      */
     public function __call($method, array $args)
     {
-        $commandName = ucfirst($method);
-
-        $result = parent::__call($commandName, $args);
-
-        return $result;
+        return parent::__call(ucfirst($method), $args);
     }
 }

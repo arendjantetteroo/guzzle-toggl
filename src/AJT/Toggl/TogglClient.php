@@ -6,6 +6,7 @@ use Guzzle\Service\Loader\JsonLoader;
 use GuzzleHttp\Client;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
+use GuzzleHttp\Command\Result;
 use Symfony\Component\Config\FileLocator;
 
 /**
@@ -27,48 +28,40 @@ class TogglClient extends GuzzleClient
      * @return TogglClient
      * @throws \Exception
      */
-    public static function factory($config = [])
+    public static function factory(array $config = [])
     {
-
-        $clientConfig = self::getClientConfig($config);
-
-        $guzzleClient = new Client($clientConfig);
+        $guzzleClient = new Client(self::getClientConfig($config));
 
         if (isset($config['apiVersion']) && $config['apiVersion'] !== 'v8') {
-            throw new \Exception('Only v8 is supported at this time');
-
+            throw new InvalidApiVersionException('Only v8 is supported at this time');
         }
 
-        $description = self::getAPIDescriptionByJsonFile('services_v8.json');
-        $client = new GuzzleClient($guzzleClient, $description);
-
-        return $client;
+        return new self($guzzleClient, self::getAPIDescriptionByJsonFile('services_v8.json'));
     }
 
-    protected static function getAPIDescriptionByJsonFile($file)
+    protected static function getAPIDescriptionByJsonFile($file): Description
     {
-        $configDirectories = [__DIR__];
-        $locator = new FileLocator($configDirectories);
-
+        $locator = new FileLocator([__DIR__]);
         $jsonLoader = new JsonLoader($locator);
-
-        $description = $jsonLoader->load($locator->locate($file));
-        $description = new Description($description);
-
-        return $description;
+        return new Description($jsonLoader->load($locator->locate($file)));
     }
 
-    protected static function getClientConfig($config)
+    protected static function getClientConfig($config): array
     {
-
         $clientConfig = [];
+
+        if (isset($config['debug']) && is_bool($config['debug'])) {
+            $clientConfig['debug'] = $config['debug'];
+        }
+
         if (isset($config['api_key'])) {
             $clientConfig['auth'] = [
                 $config['api_key'],
                 'api_token',
             ];
-
-        } elseif (isset($config['username'])) {
+            return $clientConfig;
+        }
+        if (isset($config['username'])) {
             if (!isset($config['password'])) {
                 $config['password'] = 'api_token';
             }
@@ -77,17 +70,10 @@ class TogglClient extends GuzzleClient
                 $config['username'],
                 $config['password'],
             ];
-
-        } else {
-            throw new \Exception('Provide authentication details');
+            return $clientConfig;
         }
 
-        if (isset($config['debug']) && is_bool($config['debug'])) {
-            $clientConfig['debug'] = $config['debug'];
-        }
-
-        return $clientConfig;
-
+        throw new AuthenticationDetailsMissingException('Provide authentication details');
     }
 
     /**
@@ -97,12 +83,11 @@ class TogglClient extends GuzzleClient
      * @param array|null $args
      *
      * @return mixed|void
-     *
      */
     public function __call($method, array $args)
     {
         $commandName = ucfirst($method);
-        /** @var \GuzzleHttp\Command\Result $result */
+        /** @var Result $result */
         $result = parent::__call($commandName, $args);
         // Remove data field
         if (is_array($result) && isset($result['data'])) {

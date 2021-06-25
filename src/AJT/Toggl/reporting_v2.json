@@ -4,6 +4,47 @@
   "description": "Toggl Reports API v2",
   "baseUri": "https://api.track.toggl.com/reports/api/v2/",
   "operations": {
+    "Project": {
+      "httpMethod": "GET",
+      "uri": "project",
+      "summary": "Get projects report",
+      "responseModel": "getResponse",
+      "parameters": {
+        "user_agent": {
+          "location": "query",
+          "type": "string",
+          "required": true,
+          "description": "string, required, the name of your application or your email address so we can get in touch in case you're doing something wrong."
+        },
+        "workspace_id": {
+          "location": "query",
+          "type": "integer",
+          "required": true,
+          "description": "integer, required. The workspace which data you want to access."
+        },
+        "project_id": {
+          "location": "query",
+          "type": "integer",
+          "required": true,
+          "description": "integer, required. The project whose data you want to access"
+        },
+        "page": {
+          "location": "query",
+          "type": "integer",
+          "description": "number of 'tasks_page' you want to fetch"
+        },
+        "order_field": {
+          "location": "query",
+          "type": "string",
+          "description": "name/assignee/duration/billable_amount/estimated_seconds"
+        },
+        "order_desc": {
+          "location": "query",
+          "type": "string",
+          "description": "on/off, on for descending and off for ascending order"
+        }
+      }
+    },
     "Weekly": {
       "httpMethod": "GET",
       "uri": "weekly",

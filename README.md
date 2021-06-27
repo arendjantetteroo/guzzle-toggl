@@ -9,7 +9,8 @@ A Toggl API client based on Guzzle PHP
 * supports Toggl Report Api v2 (thanks to @dirx)
 * now based on guzzle 7 
 
-See v1.1.0 for a guzzle6 version
+See v1.2.0 for the last version based on guzzle6. At the moment both versions are the same except for the supported guzzle version. 
+New releases will be based on guzzle7. 
 
 ## Installation
 

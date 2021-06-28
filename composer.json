@@ -16,11 +16,6 @@
         "guzzlehttp/guzzle-services": "^1.2",
         "gimler/guzzle-description-loader": "^0.0.4"
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
-    },
     "autoload": {
         "psr-0": {"AJT": "src/"}
     }

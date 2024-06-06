@@ -1,15 +1,21 @@
 {
   "name": "Toggl",
-  "apiVersion": "v8",
-  "description": "Toggl API v8",
-  "baseUri": "https://api.track.toggl.com/api/v8/",
+  "apiVersion": "v9",
+  "description": "Toggl API v9",
+  "baseUri": "https://api.track.toggl.com/api/v9/",
   "operations": {
     "CreateClient": {
       "httpMethod": "POST",
-      "uri": "clients",
+      "uri": "workspaces/{workspace_id}/clients",
       "summary": "Create Client",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "client": {
           "location": "json",
           "type": "object",
@@ -46,10 +52,16 @@
     },
     "GetClient": {
       "httpMethod": "GET",
-      "uri": "clients/{id}",
+      "uri": "workspaces/{workspace_id}/clients/{id}",
       "summary": "Get Client Details",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "type": "integer",
+          "required": true,
+          "description": "Workspace ID"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -60,10 +72,16 @@
     },
     "UpdateClient": {
       "httpMethod": "PUT",
-      "uri": "clients/{id}",
+      "uri": "workspaces/{workspace_id}/clients/{id}",
       "summary": "Update Client",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "type": "integer",
+          "required": true,
+          "description": "Workspace ID"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -101,10 +119,56 @@
     },
     "DeleteClient": {
       "httpMethod": "DELETE",
-      "uri": "clients/{id}",
+      "uri": "workspaces/{workspace_id}/clients/{id}",
       "summary": "Delete Client",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "type": "integer",
+          "required": true,
+          "description": "Workspace ID"
+        },
+        "id": {
+          "location": "uri",
+          "type": "integer",
+          "required": true,
+          "description": "Client ID"
+        }
+      }
+    },
+    "ArchiveClient": {
+      "httpMethod": "POST",
+      "uri": "workspaces/{workspace_id}/clients/{id}/archive",
+      "summary": "Archive Client",
+      "responseModel": "getResponse",
+      "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "type": "integer",
+          "required": true,
+          "description": "Workspace ID"
+        },
+        "id": {
+          "location": "uri",
+          "type": "integer",
+          "required": true,
+          "description": "Client ID"
+        }
+      }
+    },
+    "RestoreClient": {
+      "httpMethod": "DELETE",
+      "uri": "workspaces/{workspace_id}/clients/{id}/restore",
+      "summary": "Restore Archived Client",
+      "responseModel": "getResponse",
+      "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "type": "integer",
+          "required": true,
+          "description": "Workspace ID"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -115,7 +179,7 @@
     },
     "GetClients": {
       "httpMethod": "GET",
-      "uri": "clients",
+      "uri": "me/clients",
       "summary": "Get clients visible to user",
       "responseModel": "getResponse"
     },
@@ -141,10 +205,16 @@
     },
     "CreateProject": {
       "httpMethod": "POST",
-      "uri": "projects",
+      "uri": "workspaces/{workspace_id}/projects",
       "summary": "Create Project",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "project": {
           "location": "json",
           "type": "object",
@@ -200,11 +270,11 @@
     },
     "GetProjects": {
       "httpMethod": "GET",
-      "uri": "workspaces/{id}/projects",
+      "uri": "workspaces/{workspace_id}/projects",
       "summary": "Get projects",
       "responseModel": "getResponse",
       "parameters": {
-        "id": {
+        "workspace_id": {
           "location": "uri",
           "description": "Workspace ID",
           "required": true,
@@ -220,10 +290,16 @@
     },
     "GetProject": {
       "httpMethod": "GET",
-      "uri": "projects/{id}",
+      "uri": "workspaces/{workspace_id}/projects/{id}",
       "summary": "Get Project details",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -248,10 +324,16 @@
     },
     "UpdateProject": {
       "httpMethod": "PUT",
-      "uri": "projects/{id}",
+      "uri": "workspaces/{workspace_id}/projects/{id}",
       "summary": "Update Project",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "type": "integer",
+          "required": true,
+          "description": "Workspace ID"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -313,10 +395,16 @@
     },
     "DeleteProject": {
       "httpMethod": "DELETE",
-      "uri": "projects/{id}",
+      "uri": "workspaces/{workspace_id}/projects/{id}",
       "summary": "Delete Project",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "type": "integer",
+          "required": true,
+          "description": "Workspace ID"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -341,13 +429,13 @@
     },
     "GetProjectUsers": {
       "httpMethod": "GET",
-      "uri": "projects/{id}/project_users",
+      "uri": "workspaces/{workspace_id}/project_users",
       "summary": "Get project users",
       "responseModel": "getResponse",
       "parameters": {
-        "id": {
+        "workspace_id": {
           "location": "uri",
-          "description": "Project ID",
+          "description": "Workspace ID",
           "required": true,
           "type": "integer"
         }
@@ -355,10 +443,16 @@
     },
     "CreateProjectUser": {
       "httpMethod": "POST",
-      "uri": "project_users",
+      "uri": "workspaces/{workspace_id}/project_users",
       "summary": "Create Project User",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "project_user": {
           "location": "json",
           "type": "object",
@@ -401,10 +495,16 @@
     },
     "UpdateProjectUser": {
       "httpMethod": "PUT",
-      "uri": "project_users/{id}",
+      "uri": "workspaces/{workspace_id}/project_users/{id}",
       "summary": "Update Project User",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -438,10 +538,16 @@
     },
     "DeleteProjectUser": {
       "httpMethod": "DELETE",
-      "uri": "project_users/{id}",
+      "uri": "workspaces/{workspace_id}/project_users/{id}",
       "summary": "Delete Project User",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -452,10 +558,16 @@
     },
     "CreateProjectUsers": {
       "httpMethod": "POST",
-      "uri": "project_users",
+      "uri": "workspaces/{workspace_id}/project_users",
       "summary": "Create multiple Project Users",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "project_user": {
           "location": "json",
           "type": "array",
@@ -501,10 +613,16 @@
     },
     "UpdateProjectUsers": {
       "httpMethod": "PUT",
-      "uri": "project_users/{ids}",
+      "uri": "workspaces/{workspace_id}/project_users/{ids}",
       "summary": "Update multiple Project User",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "ids": {
           "location": "uri",
           "type": "string",
@@ -541,10 +659,16 @@
     },
     "DeleteProjectUsers": {
       "httpMethod": "DELETE",
-      "uri": "project_users/{ids}",
+      "uri": "workspaces/{workspace_id}/project_users/{ids}",
       "summary": "Delete multiple Project Users",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "ids": {
           "location": "uri",
           "type": "string",
@@ -555,10 +679,16 @@
     },
     "CreateTag": {
       "httpMethod": "POST",
-      "uri": "tags",
+      "uri": "workspaces/{workspace_id}/tags",
       "summary": "Create Tag",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "tag": {
           "location": "json",
           "type": "object",
@@ -580,10 +710,16 @@
     },
     "UpdateTag": {
       "httpMethod": "PUT",
-      "uri": "tags/{id}",
+      "uri": "workspaces/{workspace_id}/tags/{id}",
       "summary": "Update Tag",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -606,10 +742,16 @@
     },
     "DeleteTag": {
       "httpMethod": "DELETE",
-      "uri": "tags/{id}",
+      "uri": "workspaces/{workspace_id}/tags/{id}",
       "summary": "Delete Tag",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -620,10 +762,22 @@
     },
     "CreateTask": {
       "httpMethod": "POST",
-      "uri": "tasks",
+      "uri": "workspaces/{workspace_id}/projects/{project_id}/tasks",
       "summary": "Create Task",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
+        "project_id": {
+          "location": "uri",
+          "description": "Project ID",
+          "required": true,
+          "type": "integer"
+        },
         "task": {
           "location": "json",
           "type": "object",
@@ -666,10 +820,22 @@
     },
     "GetTask": {
       "httpMethod": "GET",
-      "uri": "tasks/{id}",
+      "uri": "workspaces/{workspace_id}/projects/{project_id}/tasks/{id}",
       "summary": "Get Task",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
+        "project_id": {
+          "location": "uri",
+          "description": "Project ID",
+          "required": true,
+          "type": "integer"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -680,10 +846,22 @@
     },
     "UpdateTask": {
       "httpMethod": "PUT",
-      "uri": "tasks/{id}",
+      "uri": "workspaces/{workspace_id}/projects/{project_id}/tasks/{id}",
       "summary": "Update Task",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
+        "project_id": {
+          "location": "uri",
+          "description": "Project ID",
+          "required": true,
+          "type": "integer"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -722,10 +900,22 @@
     },
     "DeleteTask": {
       "httpMethod": "DELETE",
-      "uri": "tasks/{id}",
+      "uri": "workspaces/{workspace_id}/projects/{project_id}/tasks/{id}",
       "summary": "Delete Task",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
+        "project_id": {
+          "location": "uri",
+          "description": "Project ID",
+          "required": true,
+          "type": "integer"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -736,10 +926,22 @@
     },
     "UpdateTasks": {
       "httpMethod": "PUT",
-      "uri": "tasks/{ids}",
+      "uri": "workspaces/{workspace_id}/projects/{project_id}/tasks/{ids}",
       "summary": "Update Tasks",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
+        "project_id": {
+          "location": "uri",
+          "description": "Project ID",
+          "required": true,
+          "type": "integer"
+        },
         "ids": {
           "location": "uri",
           "type": "string",
@@ -781,10 +983,22 @@
     },
     "DeleteTasks": {
       "httpMethod": "DELETE",
-      "uri": "tasks/{ids}",
+      "uri": "workspaces/{workspace_id}/projects/{project_id}/tasks/{ids}",
       "summary": "Delete Tasks",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
+        "project_id": {
+          "location": "uri",
+          "description": "Project ID",
+          "required": true,
+          "type": "integer"
+        },
         "ids": {
           "location": "uri",
           "type": "string",
@@ -864,15 +1078,27 @@
     },
     "StartTimeEntry": {
       "httpMethod": "POST",
-      "uri": "time_entries/start",
+      "uri": "/workspaces/{workspace_id}/time_entries",
       "summary": "Start Time Entry",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "time_entry": {
           "location": "json",
           "type": "object",
           "description": "Time Entry Object",
           "properties": {
+            "duration": {
+              "type": "integer",
+              "static": true,
+              "description": "Negative value required to start time entry",
+              "default": -1
+            },
             "description": {
               "type": "string",
               "required": false,
@@ -922,11 +1148,17 @@
       }
     },
     "StopTimeEntry": {
-      "httpMethod": "PUT",
-      "uri": "time_entries/{id}/stop",
+      "httpMethod": "PATCH",
+      "uri": "workspaces/{workspace_id}/time_entries/{id}/stop",
       "summary": "Stop Time Entry",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -937,7 +1169,7 @@
     },
     "GetTimeEntry": {
       "httpMethod": "GET",
-      "uri": "time_entries/{id}",
+      "uri": "me/time_entries/{id}",
       "summary": "Get Time Entry",
       "responseModel": "getResponse",
       "parameters": {
@@ -951,15 +1183,21 @@
     },
     "GetCurrentTimeEntry": {
       "httpMethod": "GET",
-      "uri": "time_entries/current",
+      "uri": "me/time_entries/current",
       "summary": "Get Current Time Entry"
     },
     "UpdateTimeEntry": {
       "httpMethod": "PUT",
-      "uri": "time_entries/{id}",
+      "uri": "workspaces/{workspace_id}/time_entries/{id}",
       "summary": "Update Time Entry",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -1031,10 +1269,16 @@
     },
     "DeleteTimeEntry": {
       "httpMethod": "DELETE",
-      "uri": "time_entries/{id}",
+      "uri": "workspaces/{workspace_id}/time_entries/{id}",
       "summary": "Delete Time Entry",
       "responseModel": "getResponse",
       "parameters": {
+        "workspace_id": {
+          "location": "uri",
+          "description": "Workspace ID",
+          "required": true,
+          "type": "integer"
+        },
         "id": {
           "location": "uri",
           "type": "integer",
@@ -1045,7 +1289,7 @@
     },
     "GetTimeEntries": {
       "httpMethod": "GET",
-      "uri": "time_entries",
+      "uri": "me/time_entries",
       "summary": "Get time entries started in a specific time range.If start_date and end_date are not specified, time entries started during the last 9 days are returned.",
       "responseModel": "getResponse",
       "parameters": {
@@ -1069,7 +1313,7 @@
     },
     "CreateUser": {
       "httpMethod": "POST",
-      "uri": "signups",
+      "uri": "signup",
       "summary": "Sign up new user",
       "responseModel": "getResponse",
       "parameters": {
@@ -1104,11 +1348,11 @@
     },
     "GetGroups": {
       "httpMethod": "GET",
-      "uri": "workspaces/{id}/groups",
+      "uri": "workspaces/{workspace_id}/groups",
       "summary": "Get groups",
       "responseModel": "getResponse",
       "parameters": {
-        "id": {
+        "workspace_id": {
           "location": "uri",
           "description": "Workspace ID",
           "required": true,
@@ -1120,27 +1364,12 @@
       "httpMethod": "GET",
       "uri": "workspaces",
       "summary": "Get workspaces",
-      "responseModel": "getResponse",
       "responseModel": "getResponse"
     },
     "GetWorkspaceUsers": {
       "httpMethod": "GET",
       "uri": "workspaces/{id}/users",
       "summary": "Get workspace users",
-      "responseModel": "getResponse",
-      "parameters": {
-        "id": {
-          "location": "uri",
-          "description": "Workspace ID",
-          "required": true,
-          "type": "integer"
-        }
-      }
-    },
-    "GetWorkspaceWorkspaceUsers": {
-      "httpMethod": "GET",
-      "uri": "workspaces/{id}/workspace_users",
-      "summary": "Many-to-many middle object containing information about a specific user's access in the specific workspace",
       "responseModel": "getResponse",
       "parameters": {
         "id": {
@@ -1162,38 +1391,6 @@
           "description": "Workspace ID",
           "required": true,
           "type": "integer"
-        }
-      }
-    },
-    "GetWorkspaceProjects": {
-      "httpMethod": "GET",
-      "uri": "workspaces/{id}/projects",
-      "summary": "Get workspace projects",
-      "responseModel": "getResponse",
-      "parameters": {
-        "id": {
-          "location": "uri",
-          "description": "Workspace ID",
-          "required": true,
-          "type": "integer"
-        },
-        "active": {
-          "location": "query",
-          "description": "possible values true/false/both. By default true. If false, only archived projects are returned.",
-          "type": "string",
-          "default": "true"
-        },
-        "actual_hours": {
-          "location": "query",
-          "description": "If true, the completed hours per project are returned.",
-          "type": "string",
-          "default": "false"
-        },
-        "only_templates": {
-          "location": "query",
-          "description": "If true, only the project templates are returned.",
-          "type": "string",
-          "default": "false"
         }
       }
     },
@@ -1231,17 +1428,17 @@
         }
       }
     },
-    "InviteWorkspaceUser": {
+    "InviteOrganizationUser": {
       "httpMethod": "POST",
-      "uri": "workspaces/{id}/invite",
-      "summary": "Invite User to Workspace",
+      "uri": "organizations/{organization_id}/invitations",
+      "summary": "Invite User to Organization",
       "responseModel": "getResponse",
       "parameters": {
-        "id": {
+        "organization_id": {
           "location": "uri",
           "type": "integer",
           "required": true,
-          "description": "Workspace ID"
+          "description": "Organization ID"
         },
         "emails": {
           "location": "json",

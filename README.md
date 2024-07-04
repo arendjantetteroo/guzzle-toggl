@@ -5,7 +5,7 @@ A Toggl API client based on Guzzle PHP
 
 ## Features
 
-* supports complete version 8 API with API Key authentication (thanks to @dirx)
+* supports partial version 9 API with API Key authentication (thanks to @edward-simpson)
 * supports Toggl Report Api v2 (thanks to @dirx)
 * now based on guzzle 7 
 
@@ -14,7 +14,7 @@ New releases will be based on guzzle7.
 
 ## Installation
 
-The library is available through Composer, so its easy to get it. 
+The library is available through Composer, so it's easy to get it. 
 Simply run this to install it:
 
     composer require ajt/guzzle-toggl
@@ -31,10 +31,10 @@ require __DIR__.'/../vendor/autoload.php';
 
 use AJT\Toggl\TogglClient;
 $toggl_token = ''; // Fill in your token here
-$toggl_client = TogglClient::factory(array('api_key' => $toggl_token));
+$toggl_client = TogglClient::factory(['api_key' => $toggl_token]);
 
 // if you want to see what is happening, add debug => true to the factory call
-$toggl_client = TogglClient::factory(array('api_key' => $toggl_token, 'debug' => true)); 
+$toggl_client = TogglClient::factory(['api_key' => $toggl_token, 'debug' => true]); 
 ```
 
 Invoke Commands using our `__call` method (auto-complete phpDocs are included)
@@ -42,9 +42,9 @@ Invoke Commands using our `__call` method (auto-complete phpDocs are included)
 ```php
 <?php 
 use AJT\Toggl\TogglClient;
-$toggl_client = TogglClient::factory(array('api_key' => $toggl_token));
+$toggl_client = TogglClient::factory(['api_key' => $toggl_token]);
 
-$workspaces = $toggl_client->getWorkspaces(array());
+$workspaces = $toggl_client->getWorkspaces([]);
 
 foreach($workspaces as $workspace){
 	$id = $workspace['id'];
@@ -57,10 +57,10 @@ Or Use the `getCommand` method (in this case you need to work with the $response
 ```php
 <?php 
 use AJT\Toggl\TogglClient;
-$toggl_client = TogglClient::factory(array('api_key' => $toggl_token));
+$toggl_client = TogglClient::factory(['api_key' => $toggl_token]);
 
 //Retrieve the Command from Guzzle
-$command = $toggl_client->getCommand('GetWorkspaces', array());
+$command = $toggl_client->getCommand('GetWorkspaces', []);
 $command->prepare();
 
 $response = $command->execute();
@@ -79,6 +79,60 @@ Afterwards you can execute the examples in the examples directory.
 
 You can look at the services.json for details on what methods are available and what parameters are available to call them
 
+## Migrating to v9
+Almost all the methods retain the same naming, but some parameters have changed.
+
+The following endpoints now require a `workspace_id` to be passed in the parameters:
+- CreateClient
+- GetClient
+- UpdateClient
+- DeleteClient
+- CreateProject
+- GetProject
+- UpdateProject
+- CreateProjectUser
+- CreateProjectUsers
+- UpdateProjectUser
+- UpdateProjectUsers
+- DeleteProjectUser
+- DeleteProjectUsers
+- CreateTag
+- UpdateTag
+- DeleteTag
+- CreateTask (also requires a `project_id`)
+- GetTask (also requires a `project_id`)
+- UpdateTask (also requires a `project_id`)
+- UpdateTasks (also requires a `project_id`)
+- DeleteTask (also requires a `project_id`)
+- DeleteTasks (also requires a `project_id`)
+- StartTimeEntry
+- StopTimeEntry
+- UpdateTimeEntry
+- DeleteTimeEntry
+
+The following endpoints now require a `project_id` to be passed in the parameters:
+- CreateTask
+- GetTask
+- UpdateTask
+- UpdateTasks
+- DeleteTask
+- DeleteTasks
+
+The following endpoints are new:
+- ArchiveClient
+- RestoreClient
+
+The following endpoints have changed their parameters:
+- GetProjects (`id` is now `workspace_id`, for clarity)
+- GetProjectUsers no longer accepts a `project_id` parameter, but instead accepts a `workspace_id` parameter
+
+The following endpoints have had their name changed, to match the toggl docs more closely:
+- InviteWorkspaceUser -> InviteOrganizationUser
+
+The following endpoints have been removed:
+- GetWorkspaceWorkspaceUsers
+- GetWorkspaceProjects (use GetProjects instead)
+
 ## Todo
 
 - [ ] Add some more examples
@@ -88,7 +142,7 @@ You can look at the services.json for details on what methods are available and 
 ## Contributions welcome
 
 Found a bug, open an issue, preferably with the debug output and what you did. 
-Bugfix? Open a Pull Request and i'll look into it. 
+Bugfix? Open a Pull Request and I'll look into it. 
 
 ## License
 

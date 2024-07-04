@@ -32,11 +32,11 @@ class TogglClient extends GuzzleClient
     {
         $guzzleClient = new Client(self::getClientConfig($config));
 
-        if (isset($config['apiVersion']) && $config['apiVersion'] !== 'v8') {
-            throw new InvalidApiVersionException('Only v8 is supported at this time');
+        if (isset($config['apiVersion']) && $config['apiVersion'] !== 'v9') {
+            throw new InvalidApiVersionException('Only v9 is supported at this time');
         }
 
-        return new self($guzzleClient, self::getAPIDescriptionByJsonFile('services_v8.json'));
+        return new self($guzzleClient, self::getAPIDescriptionByJsonFile('services_v9.json'));
     }
 
     protected static function getAPIDescriptionByJsonFile($file): Description

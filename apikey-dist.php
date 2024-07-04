@@ -8,7 +8,7 @@
  * @var string
  */
 $toggl_api_key = '';
-$toggl_api_version = 'v8';
+$toggl_api_version = 'v9';
 $toggle_api_reporting_version = 'v2';
 
 $username = 'mail@example.com';

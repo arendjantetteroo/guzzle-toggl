@@ -5,7 +5,6 @@
     "keywords": ["toggl", "ajt", "api", "guzzle"],
     "homepage": "http://github.com/arendjantetteroo/guzzle-toggl",
     "license": "MIT",
-    "version": "9.0.0",
     "authors": [
         {
             "name": "Arend-Jan Tetteroo",

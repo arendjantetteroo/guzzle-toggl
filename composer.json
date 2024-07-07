@@ -14,7 +14,7 @@
     "require": {
         "guzzlehttp/guzzle": "^7.3",
         "guzzlehttp/guzzle-services": "^1.2",
-        "gimler/guzzle-description-loader": "^0.0.4"
+        "inveniem/guzzle-description-loader": "v1.0.0"
     },
     "autoload": {
         "psr-0": {"AJT": "src/"}

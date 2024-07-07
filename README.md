@@ -5,12 +5,9 @@ A Toggl API client based on Guzzle PHP
 
 ## Features
 
-* supports partial version 9 API with API Key authentication (thanks to @edward-simpson)
-* supports Toggl Report Api v2 (thanks to @dirx)
-* now based on guzzle 7 
-
-See v1.2.0 for the last version based on guzzle6. At the moment both versions are the same except for the supported guzzle version. 
-New releases will be based on guzzle7. 
+* supports version 9 API with API Key authentication
+* supports Toggl Report Api v2 
+* based on guzzle 7 
 
 ## Installation
 
@@ -22,7 +19,7 @@ Simply run this to install it:
 ## Usage
     
 To use the Toggl API Client simply instantiate the client with the api key.
-More information on the key and authentication available at https://github.com/toggl/toggl_api_docs/blob/master/chapters/authentication.md
+More information on the key and authentication available at https://engineering.toggl.com/docs/authentication
 
 ```php
 <?php
@@ -143,6 +140,10 @@ The following endpoints have been removed:
 
 Found a bug, open an issue, preferably with the debug output and what you did. 
 Bugfix? Open a Pull Request and I'll look into it. 
+
+## Contributors:
+Thank you to several contributors over the years to keep this updated with toggl's api versions.
+See the contributor page for all of them https://github.com/arendjantetteroo/guzzle-toggl/graphs/contributors
 
 ## License
 
